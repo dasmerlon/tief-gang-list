@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "tief-gang-list"
+version = "0.0.1"
+description = "A cool gang."
+authors = ["Arne Beer <contact@arne.beer>", "Merle Hoffmann <hoffmannmerle@web.de>"]
+license = "MIT"
+repository = "https://github.com/dasmerlon/tief-gang-list"
+
+[tool.poetry.dependencies]
+python = ">=3.10, <4"
+fastapi = {extras = ["all"], version = "^0.85.0"}
