@@ -1,3 +1,8 @@
-from fastapi import FastAPI
+from .endpoints import *
 
-app = FastAPI()
+from app import app
+
+
+def main():
+    # run server
+    uvicorn.run(app, host="0.0.0.0")
