@@ -4,7 +4,7 @@ from uuid import UUID
 from fastapi import status
 
 from app import app
-from app.schemas.registration import *
+from app.schemas.registration import Registration
 
 
 @app.get(

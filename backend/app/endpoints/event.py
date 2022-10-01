@@ -1,9 +1,10 @@
+from datetime import date
 from uuid import UUID
 
 from fastapi import status
 
 from app import app
-from app.schemas.event import *
+from app.schemas.event import Event
 
 
 @app.get(

@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi import status
 
 from app import app
-from app.schemas.guest import *
+from app.schemas.guest import Guest
 
 
 @app.get(

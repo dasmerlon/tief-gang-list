@@ -1,6 +1,7 @@
-from app import app
+import uvicorn
 
-from .endpoints import *
+from app import app
+from app.endpoints import *  # noqa F403 F401
 
 
 def main():
