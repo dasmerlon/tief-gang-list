@@ -1,5 +1,6 @@
-from pydantic import UUID4, BaseModel, EmailStr
 from datetime import date, time
+
+from pydantic import UUID4, BaseModel
 
 
 class EventBase(BaseModel):
@@ -7,11 +8,14 @@ class EventBase(BaseModel):
     date: date
     registration_deadline: time | None = None
 
+
 class EventCreate(EventBase):
     pass
 
+
 class EventUpdate(EventBase):
     pass
+
 
 class Event(EventBase):
     id: UUID4

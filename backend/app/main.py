@@ -1,6 +1,6 @@
-from .endpoints import *
-
 from app import app
+
+from .endpoints import *
 
 
 def main():
