@@ -1,0 +1,26 @@
+run:
+    poetry run uvicorn app.main:app
+
+setup:
+    poetry install
+
+lint:
+    poetry run black app --check
+    poetry run isort --check-only app
+    poetry run flake8 --exclude __init__.py,.venv
+
+format:
+    # remove unused imports
+    poetry run autoflake \
+        --remove-all-unused-imports \
+        --recursive \
+        --in-place app \
+        --exclude=__init__.py,.venv
+    poetry run black app
+    poetry run isort app
+
+
+# Watch for something
+# E.g. `just watch lint` or `just watch test`
+watch *args:
+    watchexec --clear 'just {{ args }}'

@@ -8,11 +8,14 @@ class GuestBase(BaseModel):
     email: EmailStr | None = None
     subscribed: bool | None = None
 
+
 class GuestCreate(GuestBase):
     pass
 
+
 class GuestUpdate(GuestBase):
     pass
+
 
 class Guest(GuestBase):
     id: UUID4
