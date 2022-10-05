@@ -1,6 +1,7 @@
 from uuid import uuid4
 
 from sqlalchemy import Boolean, Column, DateTime, String, func
+from sqlalchemy.orm import relationship
 
 from app.db import Base
 
@@ -19,6 +20,8 @@ class Guest(Base):
     updated_at = Column(
         DateTime, server_default=func.now(), onupdate=func.now(), nullable=False
     )
+
+    registrations = relationship("Registration", back_populates="guest")
 
     def __repr__(self):
         return (

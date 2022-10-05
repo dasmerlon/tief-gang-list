@@ -1,6 +1,7 @@
 from uuid import uuid4
 
 from sqlalchemy import Column, Date, DateTime, String, func
+from sqlalchemy.orm import relationship
 
 from app.db import Base
 
@@ -17,6 +18,8 @@ class Event(Base):
     updated_at = Column(
         DateTime, server_default=func.now(), onupdate=func.now(), nullable=False
     )
+
+    registrations = relationship("Registration", back_populates="event")
 
     def __repr__(self):
         return (
