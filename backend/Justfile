@@ -1,5 +1,6 @@
 run:
-    poetry run uvicorn app.main:app
+    rm -f tiefgang.db
+    poetry run python ./main.py
 
 setup:
     poetry install
