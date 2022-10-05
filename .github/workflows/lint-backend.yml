@@ -4,11 +4,11 @@ on:
   push:
     paths:
       - '.github/**/*'
-      - 'backend/'
+      - 'backend/**'
   pull_request:
     paths:
       - '.github/**/*'
-      - 'backend/'
+      - 'backend/**'
 
 defaults:
   run:
