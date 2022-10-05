@@ -14,9 +14,11 @@ python = ">=3.10, <4"
 fastapi = { extras = ["all"], version = "^0.85.1" }
 SQLAlchemy-Utils = "^0.38.3"
 
-
 [tool.poetry.dev-dependencies]
 black = "^22"
 isort = "^5"
 flake8 = "^5"
 autoflake = "^1"
+
+[tool.isort]
+line_length = 88
