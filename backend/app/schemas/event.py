@@ -19,3 +19,6 @@ class EventUpdate(EventBase):
 
 class Event(EventBase):
     id: UUID4
+
+    class Config:
+        orm_mode = True

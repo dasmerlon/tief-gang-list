@@ -2,7 +2,7 @@ from uuid import UUID
 
 from fastapi import status
 
-from app import app
+from app import app, crud
 from app.schemas.guest import Guest
 
 
@@ -12,4 +12,4 @@ from app.schemas.guest import Guest
     status_code=status.HTTP_200_OK,
 )
 async def read_guest(guest_id: UUID):
-    return {"id": guest_id}
+    return crud.guest.get(guest_id)

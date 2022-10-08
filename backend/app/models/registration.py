@@ -19,8 +19,8 @@ class Registration(Base):
         DateTime, server_default=func.now(), onupdate=func.now(), nullable=False
     )
 
-    guest = relationship("Guest", back_populates="events")
-    event = relationship("Event", back_populates="guests")
+    guest = relationship("Guest", back_populates="registrations")
+    event = relationship("Event", back_populates="registrations")
 
     def __repr__(self):
         return (

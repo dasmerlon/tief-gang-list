@@ -19,3 +19,6 @@ class GuestUpdate(GuestBase):
 
 class Guest(GuestBase):
     id: UUID4
+
+    class Config:
+        orm_mode = True

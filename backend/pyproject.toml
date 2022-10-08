@@ -13,6 +13,7 @@ repository = "https://github.com/dasmerlon/tief-gang-list"
 python = ">=3.10, <4"
 fastapi = { extras = ["all"], version = "^0.85.1" }
 SQLAlchemy-Utils = "^0.38.3"
+FastAPI-SQLAlchemy = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22"
