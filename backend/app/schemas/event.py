@@ -1,4 +1,4 @@
-from datetime import date, time
+from datetime import date, datetime
 
 from pydantic import UUID4, BaseModel
 
@@ -6,7 +6,7 @@ from pydantic import UUID4, BaseModel
 class EventBase(BaseModel):
     name: str
     date: date
-    registration_deadline: time | None = None
+    registration_deadline: datetime | None = None
 
 
 class EventCreate(EventBase):
@@ -19,3 +19,6 @@ class EventUpdate(EventBase):
 
 class Event(EventBase):
     id: UUID4
+
+    class Config:
+        orm_mode = True

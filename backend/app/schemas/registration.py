@@ -20,3 +20,6 @@ class Registration(RegistrationBase):
     created_at: datetime
     guest: Guest
     event: Event
+
+    class Config:
+        orm_mode = True
