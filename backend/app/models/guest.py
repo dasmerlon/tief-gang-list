@@ -1,6 +1,5 @@
-from uuid import uuid4
-
-from sqlalchemy import Boolean, Column, DateTime, String, func
+from sqlalchemy import Boolean, Column, DateTime, String, func, text
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
 from app.db import Base
@@ -9,7 +8,7 @@ from app.db import Base
 class Guest(Base):
     __tablename__ = "guest"
 
-    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
+    id = Column(UUID, primary_key=True, server_default=text("uuid_generate_v4()"))
     first_name = Column(String)
     last_name = Column(String)
     buddy = Column(String)

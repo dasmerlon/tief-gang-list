@@ -1,5 +1,5 @@
 run:
-    rm -f tiefgang.db
+    dropdb --if-exists tiefgang
     poetry run python ./main.py
 
 setup:
