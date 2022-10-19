@@ -2,8 +2,8 @@ from uuid import UUID
 
 from fastapi_sqlalchemy import db
 
-from app.models.guest import Guest
+from app import models
 
 
-def get(guest_id: UUID) -> Guest | None:
-    return db.session.query(Guest).get(str(guest_id))
+def get(guest_id: UUID) -> models.Guest | None:
+    return db.session.query(models.Guest).get(guest_id)

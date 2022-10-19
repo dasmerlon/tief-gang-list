@@ -2,8 +2,7 @@ from datetime import datetime
 
 from pydantic import UUID4, BaseModel
 
-from app.schemas.event import Event
-from app.schemas.guest import Guest
+from app import schemas
 
 
 class RegistrationBase(BaseModel):
@@ -18,8 +17,8 @@ class RegistrationCreate(RegistrationBase):
 class Registration(RegistrationBase):
     id: UUID4
     created_at: datetime
-    guest: Guest
-    event: Event
+    guest: schemas.Guest
+    event: schemas.Event
 
     class Config:
         orm_mode = True
