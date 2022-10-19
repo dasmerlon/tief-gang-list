@@ -15,6 +15,7 @@ fastapi = { extras = ["all"], version = "^0.85.1" }
 SQLAlchemy-Utils = "^0.38.3"
 FastAPI-SQLAlchemy = "^0.2.1"
 psycopg2 = "^2.9.4"
+typer = {extras = ["all"], version = "^0.6.1"}
 
 [tool.poetry.dev-dependencies]
 black = "^22"
