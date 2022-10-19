@@ -1,6 +1,15 @@
 run:
-    dropdb --if-exists tiefgang
-    poetry run python ./main.py
+    poetry run python ./main.py run
+
+run-reset: resetdb run 
+
+createdb:
+    poetry run python ./main.py createdb
+
+dropdb:
+    poetry run python ./main.py dropdb
+
+resetdb: dropdb createdb
 
 setup:
     poetry install
