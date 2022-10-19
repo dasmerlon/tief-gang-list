@@ -3,13 +3,12 @@ from uuid import UUID
 
 from fastapi import status
 
-from app import app
-from app.schemas.registration import Registration
+from app import app, schemas
 
 
 @app.get(
     "/registration/{registration_id}",
-    response_model=Registration,
+    response_model=schemas.Registration,
     status_code=status.HTTP_200_OK,
 )
 async def read_registration(registration_id: UUID):
