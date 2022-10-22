@@ -15,14 +15,16 @@ class GuestCountBase(BaseModel):
 
 
 class GuestCountCreate(GuestCountBase):
-    guest_id: UUID4
     event_id: UUID4
 
 
 class GuestCount(GuestCountBase):
     id: UUID4
     event: schemas.Event
-    guest: schemas.Guest | None = None
 
     class Config:
         orm_mode = True
+
+
+class GuestsOnSite(BaseModel):
+    guests_on_site: int

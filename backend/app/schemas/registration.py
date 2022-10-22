@@ -6,12 +6,16 @@ from app import schemas
 
 
 class RegistrationBase(BaseModel):
-    pass
+    arrived: bool
 
 
 class RegistrationCreate(RegistrationBase):
     guest_id: UUID4
     event_id: UUID4
+
+
+class RegistrationUpdate(RegistrationBase):
+    pass
 
 
 class Registration(RegistrationBase):
