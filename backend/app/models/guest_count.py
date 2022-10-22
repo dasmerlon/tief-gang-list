@@ -27,8 +27,7 @@ class GuestCount(Base):
 
     def __repr__(self):
         return (
-            f"GuestCount(id={self.id!r}, "
-            f"count_type={self.count_type!r}, "
-            f"guest_id={self.guest_id!r}), "
-            f"event_id={self.event_id!r}), "
+            f"GuestCount(id={self.id}, "
+            f"count_type={self.count_type}, "
+            f"event_id={self.event_id}), "
         )

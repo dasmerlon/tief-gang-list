@@ -22,8 +22,8 @@ class Event(Base):
 
     def __repr__(self):
         return (
-            f"Event(id={self.id!r}, "
-            f"name={self.name!r}, "
-            f"date={self.date!r}), "
-            f"registration_deadline={self.registration_deadline!r}), "
+            f"Event(id={self.id}, "
+            f"name={self.name}, "
+            f"date={self.date}), "
+            f"registration_deadline={self.registration_deadline}), "
         )

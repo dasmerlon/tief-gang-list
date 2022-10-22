@@ -23,8 +23,9 @@ class Registration(Base):
 
     def __repr__(self):
         return (
-            f"Registration(id={self.id!r}, "
-            f"guest_id={self.guest_id!r}, "
-            f"event_id={self.event_id!r}), "
-            f"created_at={self.created_at!r}), "
+            f"Registration(id={self.id}, "
+            f"guest_id={self.guest_id}, "
+            f"event_id={self.event_id}), "
+            f"arrived={self.arrived}), "
+            f"created_at={self.created_at}), "
         )
