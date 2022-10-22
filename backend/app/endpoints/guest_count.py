@@ -2,7 +2,7 @@ from uuid import UUID
 
 from fastapi import status
 
-from app import app, crud, schemas
+from app import app, schemas
 
 
 @app.get(
