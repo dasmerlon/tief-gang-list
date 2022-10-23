@@ -8,7 +8,9 @@ from app.db import Base
 class Event(Base):
     __tablename__ = "event"
 
-    id = Column(UUID, primary_key=True, server_default=text("uuid_generate_v4()"))
+    id = Column(
+        UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
+    )
     name = Column(String, nullable=False)
     date = Column(Date, nullable=False)
     registration_deadline = Column(DateTime)

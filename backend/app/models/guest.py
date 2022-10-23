@@ -8,7 +8,9 @@ from app.db import Base
 class Guest(Base):
     __tablename__ = "guest"
 
-    id = Column(UUID, primary_key=True, server_default=text("uuid_generate_v4()"))
+    id = Column(
+        UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
+    )
     first_name = Column(String)
     last_name = Column(String)
     buddy = Column(String)

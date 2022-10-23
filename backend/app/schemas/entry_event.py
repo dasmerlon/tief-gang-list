@@ -11,7 +11,7 @@ class EntryEventType(str, Enum):
 
 
 class EntryEventBase(BaseModel):
-    count_type: EntryEventType
+    event_type: EntryEventType
 
 
 class EntryEventCreate(EntryEventBase):
