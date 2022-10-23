@@ -1,0 +1,5 @@
+run:
+    echo "rofl"
+
+setup:
+    npm install parcel
