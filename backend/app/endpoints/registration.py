@@ -16,5 +16,6 @@ async def read_registration(registration_id: UUID):
         "id": registration_id,
         "guest": {"id": registration_id},
         "event": {"id": registration_id, "name": "rofl", "date": date.today()},
+        "arrived": False,
         "created_at": datetime.now(),
     }

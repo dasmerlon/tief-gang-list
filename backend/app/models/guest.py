@@ -8,7 +8,9 @@ from app.db import Base
 class Guest(Base):
     __tablename__ = "guest"
 
-    id = Column(UUID, primary_key=True, server_default=text("uuid_generate_v4()"))
+    id = Column(
+        UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
+    )
     first_name = Column(String)
     last_name = Column(String)
     buddy = Column(String)
@@ -24,10 +26,10 @@ class Guest(Base):
 
     def __repr__(self):
         return (
-            f"Guest(id={self.id!r}, "
-            f"first_name={self.first_name!r}, "
-            f"last_name={self.last_name!r}), "
-            f"buddy={self.buddy!r}), "
-            f"email={self.email!r}), "
-            f"subscribed={self.subscribed!r}), "
+            f"Guest(id={self.id}, "
+            f"first_name={self.first_name}, "
+            f"last_name={self.last_name}), "
+            f"buddy={self.buddy}), "
+            f"email={self.email}), "
+            f"subscribed={self.subscribed}), "
         )

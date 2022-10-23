@@ -1,4 +1,12 @@
-from sqlalchemy import Column, DateTime, ForeignKey, UniqueConstraint, func, text
+from sqlalchemy import (
+    Boolean,
+    Column,
+    DateTime,
+    ForeignKey,
+    UniqueConstraint,
+    func,
+    text,
+)
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
@@ -9,9 +17,12 @@ class Registration(Base):
     __tablename__ = "registration"
     __table_args__ = (UniqueConstraint("guest_id", "event_id"),)
 
-    id = Column(UUID, primary_key=True, server_default=text("uuid_generate_v4()"))
+    id = Column(
+        UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
+    )
     guest_id = Column(ForeignKey("guest.id"), nullable=False)
     event_id = Column(ForeignKey("event.id"), nullable=False)
+    arrived = Column(Boolean, nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
     updated_at = Column(
@@ -23,8 +34,9 @@ class Registration(Base):
 
     def __repr__(self):
         return (
-            f"Registration(id={self.id!r}, "
-            f"guest_id={self.guest_id!r}, "
-            f"event_id={self.event_id!r}), "
-            f"created_at={self.created_at!r}), "
+            f"Registration(id={self.id}, "
+            f"guest_id={self.guest_id}, "
+            f"event_id={self.event_id}), "
+            f"arrived={self.arrived}), "
+            f"created_at={self.created_at}), "
         )
