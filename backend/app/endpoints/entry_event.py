@@ -11,14 +11,15 @@ from app import app, crud, schemas
     status_code=status.HTTP_200_OK,
 )
 async def read_guests_on_site(event_id: UUID):
-    return {"guests_on_site": 123}
+    guests_on_site = crud.entry_event.get_guests_on_site(event_id)
+    return {"guests_on_site": guests_on_site}
 
 
 @app.post(
     "/entry-event",
     response_model=schemas.GuestsOnSite,
-    status_code=status.HTTP_200_OK,
+    status_code=status.HTTP_201_CREATED,
 )
 async def create_entry_event(entry_event: schemas.EntryEventCreate):
-    count = crud.entry_event.create(entry_event)
-    return {"guests_on_site": count}
+    guests_on_site = crud.entry_event.create(entry_event)
+    return {"guests_on_site": guests_on_site}

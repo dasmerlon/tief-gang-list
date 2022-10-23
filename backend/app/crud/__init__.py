@@ -1,1 +1,1 @@
-from . import guest, entry_event
+from . import guest, entry_event, event
