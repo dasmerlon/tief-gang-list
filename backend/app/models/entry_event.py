@@ -5,18 +5,18 @@ from sqlalchemy.orm import relationship
 from app import schemas
 from app.db import Base
 
-GuestCountType: Enum = Enum(
-    schemas.GuestCountType,
-    name="guest_count_type",
+EntryEventType: Enum = Enum(
+    schemas.EntryEventType,
+    name="entry_event_type",
     metadata=Base.metadata,
 )
 
 
-class GuestCount(Base):
-    __tablename__ = "guest_count"
+class EntryEvent(Base):
+    __tablename__ = "entry_event"
 
     id = Column(UUID, primary_key=True, server_default=text("uuid_generate_v4()"))
-    count_type = Column(GuestCountType, nullable=False)
+    count_type = Column(EntryEventType, nullable=False)
     event_id = Column(ForeignKey("event.id"), nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
@@ -25,7 +25,7 @@ class GuestCount(Base):
 
     def __repr__(self):
         return (
-            f"GuestCount(id={self.id}, "
+            f"EntryEvent(id={self.id}, "
             f"count_type={self.count_type}, "
             f"event_id={self.event_id}), "
         )

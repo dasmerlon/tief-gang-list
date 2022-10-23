@@ -16,8 +16,11 @@ setup:
 
 lint:
     poetry run black app --check
-    poetry run isort --check-only app
-    poetry run flake8 --exclude __init__.py,.venv
+    poetry run isort \
+        --skip __init__.py \
+        --check-only app
+    poetry run flake8 \
+        --exclude __init__.py,.venv
 
 format:
     # remove unused imports
@@ -27,7 +30,8 @@ format:
         --in-place app \
         --exclude=__init__.py,.venv
     poetry run black app
-    poetry run isort app
+    poetry run isort app \
+        --skip __init__.py
 
 
 # Watch for something

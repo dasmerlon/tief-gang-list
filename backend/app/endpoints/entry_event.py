@@ -15,10 +15,10 @@ async def read_guests_on_site(event_id: UUID):
 
 
 @app.post(
-    "/guest-count",
+    "/entry-event",
     response_model=schemas.GuestsOnSite,
     status_code=status.HTTP_200_OK,
 )
-async def create_guest_count(guest_count: schemas.GuestCountCreate):
-    count = crud.guest_count.create(guest_count)
+async def create_entry_event(entry_event: schemas.EntryEventCreate):
+    count = crud.entry_event.create(entry_event)
     return {"guests_on_site": count}

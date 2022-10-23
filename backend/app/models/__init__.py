@@ -1,4 +1,4 @@
 from .event import Event
 from .guest import Guest
-from .guest_count import GuestCount
+from .entry_event import EntryEvent
 from .registration import Registration
