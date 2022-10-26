@@ -21,3 +21,11 @@ async def create_event(event: schemas.EventCreate):
 )
 async def read_event(event_id: UUID):
     return crud.event.get(event_id)
+
+
+@app.delete(
+    "/event/{event_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+async def delete_event(event_id: UUID):
+    crud.event.delete(event_id)

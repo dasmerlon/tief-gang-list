@@ -12,3 +12,11 @@ from app import app, crud, schemas
 )
 async def read_guest(guest_id: UUID):
     return crud.guest.get(guest_id)
+
+
+@app.delete(
+    "/guest/{guest_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+async def delete_guest(guest_id: UUID):
+    crud.guest.delete(guest_id)

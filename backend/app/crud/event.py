@@ -19,3 +19,9 @@ def create(event: schemas.EventCreate) -> models.Event:
     db.session.add(db_event)
     db.session.commit()
     return db_event
+
+
+def delete(event_id: UUID):
+    db_event = get(event_id)
+    db.session.delete(db_event)
+    db.session.commit()
