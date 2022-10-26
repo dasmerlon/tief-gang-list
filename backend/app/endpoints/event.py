@@ -19,7 +19,7 @@ async def create_event(event: schemas.EventCreate):
     response_model=schemas.Event,
     status_code=status.HTTP_200_OK,
 )
-async def read_event(event_id: UUID):
+async def get_event(event_id: UUID):
     return crud.event.get(event_id)
 
 

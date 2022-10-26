@@ -20,7 +20,7 @@ async def create_entry_event(entry_event: schemas.EntryEventCreate):
     response_model=schemas.GuestsOnSite,
     status_code=status.HTTP_200_OK,
 )
-async def read_guests_on_site(event_id: UUID):
+async def get_guests_on_site(event_id: UUID):
     guests_on_site = crud.entry_event.get_guests_on_site(event_id)
     return {"guests_on_site": guests_on_site}
 
@@ -30,6 +30,6 @@ async def read_guests_on_site(event_id: UUID):
     response_model=schemas.EntryEventList,
     status_code=status.HTTP_200_OK,
 )
-async def read_entry_events(event_id: UUID):
+async def get_entry_events(event_id: UUID):
     entry_events = crud.entry_event.get_entry_events(event_id)
     return {"entry_events": entry_events}

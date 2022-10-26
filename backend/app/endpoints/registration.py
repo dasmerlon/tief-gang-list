@@ -11,7 +11,7 @@ from app import app, schemas
     response_model=schemas.Registration,
     status_code=status.HTTP_200_OK,
 )
-async def read_registration(registration_id: UUID):
+async def get_registration(registration_id: UUID):
     return {
         "id": registration_id,
         "guest": {"id": registration_id},
