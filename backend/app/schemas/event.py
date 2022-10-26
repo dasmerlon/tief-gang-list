@@ -1,6 +1,6 @@
 from datetime import date, datetime
 
-from pydantic import UUID4, BaseModel
+from pydantic import UUID4, BaseModel, validator
 
 
 class EventBase(BaseModel):
@@ -13,8 +13,19 @@ class EventCreate(EventBase):
     pass
 
 
+# Python is stupid.
+# We have to use a type alias to avoid problems with the pipe operator.
+better_date = date
+
+
 class EventUpdate(EventBase):
-    pass
+    name: str | None = None
+    date: better_date | None = None
+
+    @validator("name", "date")
+    def prevent_none(cls, value):
+        assert value is not None, "May not be None."
+        return value
 
 
 class Event(EventBase):

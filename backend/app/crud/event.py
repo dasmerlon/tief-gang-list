@@ -5,10 +5,6 @@ from fastapi_sqlalchemy import db
 from app import models, schemas
 
 
-def get(event_id: UUID) -> models.Event | None:
-    return db.session.query(models.Event).get(event_id)
-
-
 def create(event: schemas.EventCreate) -> models.Event:
     db_event = models.Event(
         name=event.name,
@@ -19,6 +15,18 @@ def create(event: schemas.EventCreate) -> models.Event:
     db.session.add(db_event)
     db.session.commit()
     return db_event
+
+
+def get(event_id: UUID) -> models.Event | None:
+    return db.session.query(models.Event).get(event_id)
+
+
+def update(event_id: UUID, event_update: schemas.EventUpdate) -> models.Event:
+    changes = event_update.dict(exclude_unset=True)
+    db.session.query(models.Event).filter(models.Event.id == event_id).update(changes)
+
+    db.session.commit()
+    return get(event_id)
 
 
 def delete(event_id: UUID):

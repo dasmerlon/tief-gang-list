@@ -23,6 +23,15 @@ async def get_event(event_id: UUID):
     return crud.event.get(event_id)
 
 
+@app.put(
+    "/event/{event_id}",
+    response_model=schemas.Event,
+    status_code=status.HTTP_200_OK,
+)
+async def update_event(event_id: UUID, event_update: schemas.EventUpdate):
+    return crud.event.update(event_id, event_update)
+
+
 @app.delete(
     "/event/{event_id}",
     status_code=status.HTTP_204_NO_CONTENT,
