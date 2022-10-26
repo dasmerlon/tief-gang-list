@@ -40,3 +40,13 @@ def get_guests_on_site(event_id: UUID) -> int:
     ).one()
 
     return guests_on_site[0]
+
+
+def get_entry_events(event_id: UUID) -> list[models.EntryEvent]:
+    entry_events = (
+        db.session.query(models.EntryEvent)
+        .filter(models.EntryEvent.event_id == event_id)
+        .all()
+    )
+
+    return entry_events
