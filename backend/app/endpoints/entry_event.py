@@ -1,3 +1,4 @@
+from datetime import datetime
 from uuid import UUID
 
 from fastapi import status
@@ -26,9 +27,14 @@ async def get_guests_on_site(event_id: UUID):
 
 
 @app.get(
-    "/entry-events/{event_id}",
+    "/entry-event/list",
     response_model=list[schemas.EntryEvent],
     status_code=status.HTTP_200_OK,
 )
-async def get_entry_events(event_id: UUID):
-    return crud.entry_event.get_entry_events(event_id)
+async def get_list(
+    event_id: UUID | None = None,
+    event_type: schemas.EntryEventType | None = None,
+    start: datetime | None = None,
+    end: datetime | None = None,
+):
+    return crud.entry_event.get_list(event_id, event_type, start, end)
