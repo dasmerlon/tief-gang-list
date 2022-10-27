@@ -1,3 +1,4 @@
+from datetime import date
 from uuid import UUID
 
 from fastapi import status
@@ -12,6 +13,15 @@ from app import app, crud, schemas
 )
 async def create_event(event: schemas.EventCreate):
     return crud.event.create(event)
+
+
+@app.get(
+    "/event/list",
+    response_model=list[schemas.Event],
+    status_code=status.HTTP_200_OK,
+)
+async def get_list(start: date | None = None, end: date | None = None):
+    return crud.event.get_list(start, end)
 
 
 @app.get(

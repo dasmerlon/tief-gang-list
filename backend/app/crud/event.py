@@ -1,3 +1,4 @@
+from datetime import date
 from uuid import UUID
 
 from fastapi_sqlalchemy import db
@@ -19,6 +20,18 @@ def create(event: schemas.EventCreate) -> models.Event:
 
 def get(event_id: UUID) -> models.Event | None:
     return db.session.query(models.Event).get(event_id)
+
+
+def get_list(start: date | None, end: date | None) -> list[models.Event]:
+    query = db.session.query(models.Event)
+
+    if start is not None:
+        query = query.filter(models.Event.date >= start)
+
+    if end is not None:
+        query = query.filter(models.Event.date <= end)
+
+    return query.all()
 
 
 def update(event_id: UUID, event_update: schemas.EventUpdate) -> models.Event:
