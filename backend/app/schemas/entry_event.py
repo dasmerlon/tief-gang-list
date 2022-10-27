@@ -28,9 +28,5 @@ class EntryEvent(EntryEventBase):
         orm_mode = True
 
 
-class EntryEventList(BaseModel):
-    entry_events: list[EntryEvent]
-
-
 class GuestsOnSite(BaseModel):
     guests_on_site: int

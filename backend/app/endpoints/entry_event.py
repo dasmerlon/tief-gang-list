@@ -27,9 +27,8 @@ async def get_guests_on_site(event_id: UUID):
 
 @app.get(
     "/entry-events/{event_id}",
-    response_model=schemas.EntryEventList,
+    response_model=list[schemas.EntryEvent],
     status_code=status.HTTP_200_OK,
 )
 async def get_entry_events(event_id: UUID):
-    entry_events = crud.entry_event.get_entry_events(event_id)
-    return {"entry_events": entry_events}
+    return crud.entry_event.get_entry_events(event_id)
