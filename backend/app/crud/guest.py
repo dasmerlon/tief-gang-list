@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi_sqlalchemy import db
 from sqlalchemy import func
 
-from app import models, schemas
+from app import crud, models, schemas
 
 
 def create(guest: schemas.GuestCreate) -> models.Guest:
@@ -18,6 +18,27 @@ def create(guest: schemas.GuestCreate) -> models.Guest:
     db.session.add(db_guest)
     db.session.commit()
     return db_guest
+
+
+def create_on_site(
+    guest: schemas.GuestCreate, event_id: UUID, arrived: bool
+) -> models.Registration:
+    db_guest = models.Guest(
+        first_name=guest.first_name,
+        last_name=guest.last_name,
+        buddy=guest.buddy,
+        email=guest.email,
+        subscribed=guest.subscribed,
+    )
+
+    db.session.add(db_guest)
+    db.session.commit()
+
+    registration = schemas.RegistrationCreate(
+        guest_id=db_guest.id, event_id=event_id, arrived=arrived
+    )
+
+    return crud.registration.create(registration)
 
 
 def get(guest_id: UUID) -> models.Guest | None:

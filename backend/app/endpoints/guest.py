@@ -14,6 +14,17 @@ async def create_guest(guest: schemas.GuestCreate):
     return crud.guest.create(guest)
 
 
+@app.post(
+    "/guest/registration",
+    response_model=schemas.Registration,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_guest_on_site(
+    guest: schemas.GuestCreate, event_id: UUID, arrived: bool
+):
+    return crud.guest.create_on_site(guest, event_id, arrived)
+
+
 @app.get(
     "/guest/list",
     response_model=list[schemas.Guest],
