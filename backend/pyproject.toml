@@ -14,7 +14,7 @@ python = ">=3.10, <4"
 fastapi = { extras = ["all"], version = "^0.85.2" }
 SQLAlchemy-Utils = "^0.38.3"
 FastAPI-SQLAlchemy = "^0.2.1"
-psycopg2 = "^2.9.4"
+psycopg2 = "^2.9.5"
 typer = { extras = ["all"], version = "^0.6.1" }
 
 [tool.poetry.dev-dependencies]
