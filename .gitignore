@@ -1,3 +1,4 @@
 # Project wide ignores
-
+.DS_Store
+.env
 .vscode/

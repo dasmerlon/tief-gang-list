@@ -1,5 +1,23 @@
 {
+  "name": "tief-gang-list",
+  "version": "0.0.1",
+  "description": "A guest management tool for the Tiefgang hackspace",
+  "author": "Merle Hoffmann <hoffmannmerle@web.de>, Arne Beer <contact@arne.beer>",
+  "source": "public/index.html",
+  "private": true,
+  "license": "MIT",
   "devDependencies": {
-    "parcel": "^2.7.0"
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@typescript-eslint/eslint-plugin": "5.42.0",
+    "@typescript-eslint/parser": "5.42.0",
+    "eslint": "8.26.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "parcel": "^2.7.0",
+    "prettier": "2.7.1",
+    "process": "^0.11.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "4.8.4"
   }
 }

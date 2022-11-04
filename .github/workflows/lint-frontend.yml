@@ -1,0 +1,55 @@
+name: Lint Frontend
+
+on:
+  push:
+    paths:
+      - ".github/**/*"
+      - "frontend/**"
+  pull_request:
+    paths:
+      - ".github/**/*"
+      - "frontend/**"
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # This has been done according to https://docs.makedeb.org/prebuilt-mpr/getting-started/
+      # This is needed for packages: just
+      - name: Add makedb debian user repository
+        run: |
+          curl -q 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
+          sudo apt update
+
+      - name: Install dev dependencies
+        run: sudo apt install just
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./frontend/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('./frontend/package-lock.json') }}
+        id: cache
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Run lints
+        run: just lint
+
+      - name: Build
+        run: just build
