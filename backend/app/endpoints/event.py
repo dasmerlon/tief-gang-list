@@ -10,6 +10,7 @@ from app import app, crud, schemas
     "/event",
     response_model=schemas.Event,
     status_code=status.HTTP_201_CREATED,
+    tags=["event"],
 )
 async def create_event(event: schemas.EventCreate):
     return crud.event.create(event)
@@ -19,6 +20,7 @@ async def create_event(event: schemas.EventCreate):
     "/event/list",
     response_model=list[schemas.Event],
     status_code=status.HTTP_200_OK,
+    tags=["event"],
 )
 async def get_list(start: date | None = None, end: date | None = None):
     return crud.event.get_list(start, end)
@@ -28,6 +30,7 @@ async def get_list(start: date | None = None, end: date | None = None):
     "/event/{event_id}",
     response_model=schemas.Event,
     status_code=status.HTTP_200_OK,
+    tags=["event"],
 )
 async def get_event(event_id: UUID):
     return crud.event.get(event_id)
@@ -37,6 +40,7 @@ async def get_event(event_id: UUID):
     "/event/{event_id}",
     response_model=schemas.Event,
     status_code=status.HTTP_200_OK,
+    tags=["event"],
 )
 async def update_event(event_id: UUID, event_update: schemas.EventUpdate):
     return crud.event.update(event_id, event_update)
@@ -45,6 +49,7 @@ async def update_event(event_id: UUID, event_update: schemas.EventUpdate):
 @app.delete(
     "/event/{event_id}",
     status_code=status.HTTP_204_NO_CONTENT,
+    tags=["event"],
 )
 async def delete_event(event_id: UUID):
     crud.event.delete(event_id)

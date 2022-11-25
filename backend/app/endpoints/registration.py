@@ -9,6 +9,7 @@ from app import app, crud, schemas
     "/registration",
     response_model=schemas.Registration,
     status_code=status.HTTP_201_CREATED,
+    tags=["registration"],
 )
 async def create_registration(registration: schemas.RegistrationCreate):
     return crud.registration.create(registration)
@@ -18,6 +19,7 @@ async def create_registration(registration: schemas.RegistrationCreate):
     "/registration/list",
     response_model=list[schemas.Registration],
     status_code=status.HTTP_200_OK,
+    tags=["registration"],
 )
 async def get_list(arrived: bool | None = None):
     return crud.registration.get_list(arrived)
@@ -27,6 +29,7 @@ async def get_list(arrived: bool | None = None):
     "/registration/{registration_id}",
     response_model=schemas.Registration,
     status_code=status.HTTP_200_OK,
+    tags=["registration"],
 )
 async def get_registration(registration_id: UUID):
     return crud.registration.get(registration_id)
@@ -36,6 +39,7 @@ async def get_registration(registration_id: UUID):
     "/registration/{registration_id}",
     response_model=schemas.Registration,
     status_code=status.HTTP_200_OK,
+    tags=["registration"],
 )
 async def update_registration(
     registration_id: UUID, registration_update: schemas.RegistrationUpdate
@@ -46,6 +50,7 @@ async def update_registration(
 @app.delete(
     "/registration/{registration_id}",
     status_code=status.HTTP_204_NO_CONTENT,
+    tags=["registration"],
 )
 async def delete_registration(registration_id: UUID):
     crud.registration.delete(registration_id)

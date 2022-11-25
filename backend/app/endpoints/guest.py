@@ -9,6 +9,8 @@ from app import app, crud, schemas
     "/guest",
     response_model=schemas.Guest,
     status_code=status.HTTP_201_CREATED,
+    tags=["guest"],
+    response_description="The created guest.",
 )
 async def create_guest(guest: schemas.GuestCreate):
     return crud.guest.create(guest)
@@ -18,6 +20,7 @@ async def create_guest(guest: schemas.GuestCreate):
     "/guest/registration",
     response_model=schemas.Registration,
     status_code=status.HTTP_201_CREATED,
+    tags=["guest"],
 )
 async def create_guest_on_site(
     guest: schemas.GuestCreate, event_id: UUID, arrived: bool
@@ -29,6 +32,7 @@ async def create_guest_on_site(
     "/guest/list",
     response_model=list[schemas.Guest],
     status_code=status.HTTP_200_OK,
+    tags=["guest"],
 )
 async def get_list(
     first_name_start: str | None = None,
@@ -43,6 +47,7 @@ async def get_list(
     "/guest/{guest_id}",
     response_model=schemas.Guest,
     status_code=status.HTTP_200_OK,
+    tags=["guest"],
 )
 async def get_guest(guest_id: UUID):
     return crud.guest.get(guest_id)
@@ -52,6 +57,7 @@ async def get_guest(guest_id: UUID):
     "/guest/{guest_id}",
     response_model=schemas.Guest,
     status_code=status.HTTP_200_OK,
+    tags=["guest"],
 )
 async def update_guest(guest_id: UUID, guest_update: schemas.GuestUpdate):
     return crud.guest.update(guest_id, guest_update)
@@ -60,6 +66,7 @@ async def update_guest(guest_id: UUID, guest_update: schemas.GuestUpdate):
 @app.delete(
     "/guest/{guest_id}",
     status_code=status.HTTP_204_NO_CONTENT,
+    tags=["guest"],
 )
 async def delete_guest(guest_id: UUID):
     crud.guest.delete(guest_id)
