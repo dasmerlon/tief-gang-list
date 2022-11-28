@@ -14,7 +14,8 @@ class Guest(Base):
     first_name = Column(String)
     last_name = Column(String)
     buddy = Column(String)
-    email = Column(String)  # unique=True
+    # TODO: Make this unique as soon as we start working with QR codes
+    email = Column(String)
     subscribed = Column(Boolean)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
