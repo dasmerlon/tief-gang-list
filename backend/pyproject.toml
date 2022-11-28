@@ -20,7 +20,7 @@ typer = { extras = ["all"], version = "^0.6.1" }
 [tool.poetry.dev-dependencies]
 black = "^22"
 isort = "^5"
-flake8 = "^5"
+flake8 = "^6"
 autoflake = "^1"
 
 [tool.isort]
