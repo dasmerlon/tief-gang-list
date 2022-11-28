@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "tief-gang-list"
 version = "0.0.1"
-description = "A cool gang."
+description = "A guest management tool for the Tiefgang hackspace."
 authors = [
     "Arne Beer <contact@arne.beer>",
     "Merle Hoffmann <hoffmannmerle@web.de>",

@@ -13,7 +13,7 @@ tags_metadata = [
 app = FastAPI(
     title="tief-gang-list",
     version="0.0.1",
-    description="A cool gang. 😎",
+    description="A guest management tool for the Tiefgang hackspace.",
     openapi_tags=tags_metadata,
 )
 
