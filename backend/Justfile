@@ -1,7 +1,7 @@
 run:
     poetry run python ./main.py run
 
-run-reset: resetdb run 
+run-reset: resetdb run
 
 createdb:
     poetry run python ./main.py createdb
@@ -32,6 +32,9 @@ format:
     poetry run black app
     poetry run isort app \
         --skip __init__.py
+
+generate-api-spec:
+    poetry run python ./main.py generate-api-spec
 
 
 # Watch for something

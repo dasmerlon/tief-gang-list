@@ -1,5 +1,5 @@
-# Manual additions
-*.db
+# Auto-generated openapi specification
+openapi.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

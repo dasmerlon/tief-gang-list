@@ -1,7 +1,9 @@
+import json
+
 import uvicorn
 from sqlalchemy import text
 from sqlalchemy_utils.functions import create_database, database_exists, drop_database
-
+from fastapi.openapi.utils import get_openapi
 import typer
 
 from app.db import engine, Base
@@ -38,6 +40,25 @@ def dropdb():
         return
 
     drop_database(engine.url)
+
+
+@cli.command()
+def generate_api_spec():
+    print("Generating openapi schema.")
+
+    with open("openapi.json", "w") as file:
+        json.dump(
+            get_openapi(
+                title=app.title,
+                version=app.version,
+                openapi_version=app.openapi_version,
+                description=app.description,
+                routes=app.routes,
+            ),
+            file,
+            sort_keys=True,
+            indent=4,
+        )
 
 
 cli()

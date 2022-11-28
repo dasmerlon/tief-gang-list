@@ -2,6 +2,11 @@ run:
     npx parcel --open
 
 build:
+    #!/bin/bash
+    cd ../backend
+    just generate-api-spec
+    cd ../frontend
+    just build-api
     npx parcel build
 
 setup:
@@ -10,6 +15,12 @@ setup:
 lint *args:
     npx eslint --ignore-path .gitignore {{ args }} .
     npx tsc
+
+build-api:
+    npx openapi \
+        --input http://localhost:8000/openapi.json \
+        --output ./src/api \
+        --client axios
 
 format:
     just lint --fix
