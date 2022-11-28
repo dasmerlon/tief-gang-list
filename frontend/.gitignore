@@ -1,6 +1,5 @@
 # JS Tooling
 .parcel-cache
-package-lock.json
 node_modules
 
 # Logs
