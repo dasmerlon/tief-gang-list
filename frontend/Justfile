@@ -1,0 +1,15 @@
+run:
+    npx parcel --open
+
+build:
+    npx parcel build
+
+setup:
+    npm install
+
+lint *args:
+    npx eslint --ignore-path .gitignore {{ args }} .
+    npx tsc
+
+format:
+    just lint --fix
