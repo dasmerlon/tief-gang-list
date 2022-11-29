@@ -14,6 +14,7 @@ class Guest(Base):
     first_name = Column(String)
     last_name = Column(String)
     buddy = Column(String)
+    # TODO: Make this unique as soon as we start working with QR codes
     email = Column(String)
     subscribed = Column(Boolean)
 

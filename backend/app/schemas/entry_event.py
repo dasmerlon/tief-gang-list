@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 
 from pydantic import UUID4, BaseModel
@@ -21,6 +22,7 @@ class EntryEventCreate(EntryEventBase):
 class EntryEvent(EntryEventBase):
     id: UUID4
     event: schemas.Event
+    created_at: datetime
 
     class Config:
         orm_mode = True

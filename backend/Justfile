@@ -40,4 +40,4 @@ generate-api-spec:
 # Watch for something
 # E.g. `just watch lint` or `just watch test`
 watch *args:
-    watchexec --clear 'just {{ args }}'
+    watchexec -e py --restart --clear 'just {{ args }}'

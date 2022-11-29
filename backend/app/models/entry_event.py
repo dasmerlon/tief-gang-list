@@ -19,7 +19,7 @@ class EntryEvent(Base):
         UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
     )
     event_type = Column(EntryEventType, nullable=False)
-    event_id = Column(ForeignKey("event.id"), nullable=False)
+    event_id = Column(ForeignKey("event.id", ondelete="CASCADE"), nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
 

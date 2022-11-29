@@ -1,3 +1,4 @@
+from datetime import datetime
 from uuid import UUID
 
 from fastapi_sqlalchemy import db
@@ -40,3 +41,26 @@ def get_guests_on_site(event_id: UUID) -> int:
     ).one()
 
     return guests_on_site[0]
+
+
+def get_list(
+    event_id: UUID | None,
+    event_type: schemas.EntryEventType | None,
+    start: datetime | None,
+    end: datetime | None,
+) -> list[models.EntryEvent]:
+    query = db.session.query(models.EntryEvent)
+
+    if event_id is not None:
+        query = query.filter(models.EntryEvent.event_id == event_id)
+
+    if event_type is not None:
+        query = query.filter(models.EntryEvent.event_type == event_type)
+
+    if start is not None:
+        query = query.filter(models.EntryEvent.created_at >= start)
+
+    if end is not None:
+        query = query.filter(models.EntryEvent.created_at <= end)
+
+    return query.all()

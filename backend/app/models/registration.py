@@ -20,8 +20,8 @@ class Registration(Base):
     id = Column(
         UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
     )
-    guest_id = Column(ForeignKey("guest.id"), nullable=False)
-    event_id = Column(ForeignKey("event.id"), nullable=False)
+    guest_id = Column(ForeignKey("guest.id", ondelete="CASCADE"), nullable=False)
+    event_id = Column(ForeignKey("event.id", ondelete="CASCADE"), nullable=False)
     arrived = Column(Boolean, nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
