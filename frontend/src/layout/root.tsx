@@ -1,3 +1,5 @@
+import { Outlet, Link } from "react-router-dom";
+
 function Root() {
   return (
     <>
@@ -6,15 +8,17 @@ function Root() {
         <nav>
           <ul>
             <li>
-              <a href={`events/current`}>Current Event</a>
+              <Link to={`events/current`}>Current Event</Link>
             </li>
             <li>
-              <a href={`events`}>List of Events</a>
+              <Link to={`events`}>List of Events</Link>
             </li>
           </ul>
         </nav>
       </div>
-      <div id="page"></div>
+      <div id="page">
+        <Outlet />
+      </div>
     </>
   );
 }

@@ -1,17 +1,32 @@
-function ErrorPage() {
-  const error = useRouteError() as ErrorInterface;
-  console.error(error);
+import { Event as ApiEvent } from "../api/models";
+import { useEffect, useState } from "react";
+import { EventApi } from "../api/apis/EventApi";
+import { Configuration } from "../api/runtime";
+import { Link } from "react-router-dom";
+
+function Events() {
+  const [events, setEvents] = useState<ApiEvent[] | undefined>(undefined);
+
+  // Fetch a list of events once, when loading the component.
+  useEffect(() => {
+    const config = new Configuration({ basePath: "http://localhost:8000" });
+    const api = new EventApi(config);
+    api.getListEventListGet().then((events) => setEvents(events));
+  }, []);
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>Please contact either Merle or Arne :))</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
+    <div>
+      <h1>Events</h1>
+      {events?.map((event, index) => {
+        return (
+          <li key={index}>
+            {event.name}
+            <Link to={"event/" + event.id}> Go to event</Link>{" "}
+          </li>
+        );
+      })}
     </div>
   );
 }
 
-export default ErrorPage;
+export default Events;

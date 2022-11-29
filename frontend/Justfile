@@ -16,11 +16,21 @@ lint *args:
     npx eslint --ignore-path .gitignore {{ args }} .
     npx tsc
 
-build-api:
-    npx openapi \
-        --input http://localhost:8000/openapi.json \
+generate-api-client *args:
+    rm -rf src/api
+    npx openapi-generator-cli generate \
+        --input-spec ../backend/openapi.json \
+        --generator-name typescript-fetch \
         --output ./src/api \
-        --client axios
+        --additional-properties \
+    "supportsES6=true,\
+    withInterfaces=true,\
+    enumNameSuffix=,\
+    enumPropertyNaming=UPPERCASE,\
+    modelPropertyNaming=camelCase,\
+    typescriptThreePlus=true,\
+    stringEnums=true\
+    " {{ args }}
 
 format:
     just lint --fix
