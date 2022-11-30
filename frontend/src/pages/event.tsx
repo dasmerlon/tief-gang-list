@@ -10,7 +10,7 @@ function EventPage() {
   if (eventId) {
     useEffect(() => {
       eventApi
-        .getEventEventEventIdGet({ eventId })
+        .getEventApiEventEventIdGet({ eventId })
         .then((event) => setEvent(event));
     }, []);
   }

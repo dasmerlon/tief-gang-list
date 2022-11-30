@@ -8,7 +8,7 @@ function Events() {
 
   // Fetch a list of events once, when loading the component.
   useEffect(() => {
-    eventApi.getListEventListGet().then((events) => setEvents(events));
+    eventApi.getListApiEventListGet().then((events) => setEvents(events));
   }, []);
 
   return (
