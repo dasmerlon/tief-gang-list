@@ -3,25 +3,25 @@ name = "tief-gang-list"
 version = "0.0.1"
 description = "A guest management tool for the Tiefgang hackspace."
 authors = [
-    "Arne Beer <contact@arne.beer>",
-    "Merle Hoffmann <hoffmannmerle@web.de>",
+  "Arne Beer <contact@arne.beer>",
+  "Merle Hoffmann <hoffmannmerle@web.de>",
 ]
 license = "MIT"
 repository = "https://github.com/dasmerlon/tief-gang-list"
 
 [tool.poetry.dependencies]
 python = ">=3.10, <4"
-fastapi = { extras = ["all"], version = "^0.85.2" }
-SQLAlchemy-Utils = "^0.38.3"
-FastAPI-SQLAlchemy = "^0.2.1"
+fastapi = { extras = ["all"], version = "^0.88" }
+SQLAlchemy-Utils = "^0.38"
+FastAPI-SQLAlchemy = "^0.2"
 psycopg2 = "^2.9.5"
-typer = { extras = ["all"], version = "^0.6.1" }
+typer = { extras = ["all"], version = "^0.7" }
 
 [tool.poetry.dev-dependencies]
 black = "^22"
 isort = "^5"
-flake8 = "^5"
-autoflake = "^1"
+flake8 = "^6"
+autoflake = "^2"
 
 [tool.isort]
 line_length = 88
