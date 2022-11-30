@@ -11,6 +11,9 @@ from app import app, models, endpoints  # noqa F403 F401
 
 cli = typer.Typer()
 
+# Add the router
+app.include_router(endpoints.api_router)
+
 
 @cli.command()
 def run():

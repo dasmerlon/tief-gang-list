@@ -1,17 +1,14 @@
 import { Event as ApiEvent } from "../api/models";
 import { useEffect, useState } from "react";
-import { EventApi } from "../api/apis/EventApi";
-import { Configuration } from "../api/runtime";
 import { Link } from "react-router-dom";
+import { eventApi } from "../apis";
 
 function Events() {
   const [events, setEvents] = useState<ApiEvent[] | undefined>(undefined);
 
   // Fetch a list of events once, when loading the component.
   useEffect(() => {
-    const config = new Configuration({ basePath: "http://localhost:8000" });
-    const api = new EventApi(config);
-    api.getListEventListGet().then((events) => setEvents(events));
+    eventApi.getListEventListGet().then((events) => setEvents(events));
   }, []);
 
   return (

@@ -2,10 +2,11 @@ from uuid import UUID
 
 from fastapi import status
 
-from app import app, crud, schemas
+from app import crud, schemas
+from . import api_router
 
 
-@app.post(
+@api_router.post(
     "/registration",
     response_model=schemas.Registration,
     status_code=status.HTTP_201_CREATED,
@@ -16,7 +17,7 @@ async def create_registration(registration: schemas.RegistrationCreate):
     return crud.registration.create(registration)
 
 
-@app.get(
+@api_router.get(
     "/registration/list",
     response_model=list[schemas.Registration],
     status_code=status.HTTP_200_OK,
@@ -28,7 +29,7 @@ async def get_list(arrived: bool | None = None):
     return crud.registration.get_list(arrived)
 
 
-@app.get(
+@api_router.get(
     "/registration/{registration_id}",
     response_model=schemas.Registration,
     status_code=status.HTTP_200_OK,
@@ -40,7 +41,7 @@ async def get_registration(registration_id: UUID):
     return crud.registration.get(registration_id)
 
 
-@app.put(
+@api_router.put(
     "/registration/{registration_id}",
     response_model=schemas.Registration,
     status_code=status.HTTP_200_OK,
@@ -54,7 +55,7 @@ async def update_registration(
     return crud.registration.update(registration_id, registration_update)
 
 
-@app.delete(
+@api_router.delete(
     "/registration/{registration_id}",
     status_code=status.HTTP_204_NO_CONTENT,
     tags=["registration"],

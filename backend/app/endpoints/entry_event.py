@@ -3,10 +3,11 @@ from uuid import UUID
 
 from fastapi import status
 
-from app import app, crud, schemas
+from app import crud, schemas
+from . import api_router
 
 
-@app.post(
+@api_router.post(
     "/entry-event",
     response_model=schemas.GuestsOnSite,
     status_code=status.HTTP_201_CREATED,
@@ -19,7 +20,7 @@ async def create_entry_event(entry_event: schemas.EntryEventCreate):
     return {"guests_on_site": guests_on_site}
 
 
-@app.get(
+@api_router.get(
     "/guests-on-site/{event_id}",
     response_model=schemas.GuestsOnSite,
     status_code=status.HTTP_200_OK,
@@ -32,7 +33,7 @@ async def get_guests_on_site(event_id: UUID):
     return {"guests_on_site": guests_on_site}
 
 
-@app.get(
+@api_router.get(
     "/entry-event/list",
     response_model=list[schemas.EntryEvent],
     status_code=status.HTTP_200_OK,
