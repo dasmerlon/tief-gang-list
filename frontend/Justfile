@@ -3,7 +3,7 @@ run:
 
 build:
     #!/bin/bash
-    cd ../frontend
+    rm -rf dist
     just generate-api-client
     npx parcel build
 
