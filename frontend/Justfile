@@ -3,10 +3,8 @@ run:
 
 build:
     #!/bin/bash
-    cd ../backend
-    just generate-api-spec
     cd ../frontend
-    just build-api
+    just generate-api-client
     npx parcel build
 
 setup:

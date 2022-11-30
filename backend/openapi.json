@@ -1,0 +1,1284 @@
+{
+    "components": {
+        "schemas": {
+            "EntryEvent": {
+                "properties": {
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "event": {
+                        "$ref": "#/components/schemas/Event"
+                    },
+                    "event_type": {
+                        "$ref": "#/components/schemas/EntryEventType"
+                    },
+                    "id": {
+                        "format": "uuid4",
+                        "title": "Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "event_type",
+                    "id",
+                    "event",
+                    "created_at"
+                ],
+                "title": "EntryEvent",
+                "type": "object"
+            },
+            "EntryEventCreate": {
+                "properties": {
+                    "event_id": {
+                        "format": "uuid4",
+                        "title": "Event Id",
+                        "type": "string"
+                    },
+                    "event_type": {
+                        "$ref": "#/components/schemas/EntryEventType"
+                    }
+                },
+                "required": [
+                    "event_type",
+                    "event_id"
+                ],
+                "title": "EntryEventCreate",
+                "type": "object"
+            },
+            "EntryEventType": {
+                "description": "An enumeration.",
+                "enum": [
+                    "arrival",
+                    "departure"
+                ],
+                "title": "EntryEventType",
+                "type": "string"
+            },
+            "Event": {
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "title": "Date",
+                        "type": "string"
+                    },
+                    "id": {
+                        "format": "uuid4",
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "registration_deadline": {
+                        "format": "date-time",
+                        "title": "Registration Deadline",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "date",
+                    "id"
+                ],
+                "title": "Event",
+                "type": "object"
+            },
+            "EventCreate": {
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "title": "Date",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "registration_deadline": {
+                        "format": "date-time",
+                        "title": "Registration Deadline",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "date"
+                ],
+                "title": "EventCreate",
+                "type": "object"
+            },
+            "EventUpdate": {
+                "properties": {
+                    "date": {
+                        "format": "date",
+                        "title": "Date",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "registration_deadline": {
+                        "format": "date-time",
+                        "title": "Registration Deadline",
+                        "type": "string"
+                    }
+                },
+                "title": "EventUpdate",
+                "type": "object"
+            },
+            "Guest": {
+                "properties": {
+                    "buddy": {
+                        "title": "Buddy",
+                        "type": "string"
+                    },
+                    "email": {
+                        "format": "email",
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "title": "First Name",
+                        "type": "string"
+                    },
+                    "id": {
+                        "format": "uuid4",
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "Last Name",
+                        "type": "string"
+                    },
+                    "subscribed": {
+                        "title": "Subscribed",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "title": "Guest",
+                "type": "object"
+            },
+            "GuestCreate": {
+                "properties": {
+                    "buddy": {
+                        "title": "Buddy",
+                        "type": "string"
+                    },
+                    "email": {
+                        "format": "email",
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "title": "First Name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "Last Name",
+                        "type": "string"
+                    },
+                    "subscribed": {
+                        "title": "Subscribed",
+                        "type": "boolean"
+                    }
+                },
+                "title": "GuestCreate",
+                "type": "object"
+            },
+            "GuestUpdate": {
+                "properties": {
+                    "buddy": {
+                        "title": "Buddy",
+                        "type": "string"
+                    },
+                    "email": {
+                        "format": "email",
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "title": "First Name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "Last Name",
+                        "type": "string"
+                    },
+                    "subscribed": {
+                        "title": "Subscribed",
+                        "type": "boolean"
+                    }
+                },
+                "title": "GuestUpdate",
+                "type": "object"
+            },
+            "GuestsOnSite": {
+                "properties": {
+                    "guests_on_site": {
+                        "title": "Guests On Site",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "guests_on_site"
+                ],
+                "title": "GuestsOnSite",
+                "type": "object"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "title": "Detail",
+                        "type": "array"
+                    }
+                },
+                "title": "HTTPValidationError",
+                "type": "object"
+            },
+            "Registration": {
+                "properties": {
+                    "arrived": {
+                        "title": "Arrived",
+                        "type": "boolean"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "event": {
+                        "$ref": "#/components/schemas/Event"
+                    },
+                    "guest": {
+                        "$ref": "#/components/schemas/Guest"
+                    },
+                    "id": {
+                        "format": "uuid4",
+                        "title": "Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "arrived",
+                    "id",
+                    "created_at",
+                    "guest",
+                    "event"
+                ],
+                "title": "Registration",
+                "type": "object"
+            },
+            "RegistrationCreate": {
+                "properties": {
+                    "arrived": {
+                        "title": "Arrived",
+                        "type": "boolean"
+                    },
+                    "event_id": {
+                        "format": "uuid4",
+                        "title": "Event Id",
+                        "type": "string"
+                    },
+                    "guest_id": {
+                        "format": "uuid4",
+                        "title": "Guest Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "arrived",
+                    "guest_id",
+                    "event_id"
+                ],
+                "title": "RegistrationCreate",
+                "type": "object"
+            },
+            "RegistrationUpdate": {
+                "properties": {
+                    "arrived": {
+                        "title": "Arrived",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "arrived"
+                ],
+                "title": "RegistrationUpdate",
+                "type": "object"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "title": "Location",
+                        "type": "array"
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError",
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "description": "A guest management tool for the Tiefgang hackspace.",
+        "title": "tief-gang-list",
+        "version": "0.0.1"
+    },
+    "openapi": "3.0.2",
+    "paths": {
+        "/api/entry-event": {
+            "post": {
+                "description": "Create a new entry event for an event.",
+                "operationId": "create_entry_event_api_entry_event_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EntryEventCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GuestsOnSite"
+                                }
+                            }
+                        },
+                        "description": "The number of guests on site of an event."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Create Entry Event",
+                "tags": [
+                    "entry_event"
+                ]
+            }
+        },
+        "/api/entry-event/list": {
+            "get": {
+                "description": "Get a list of existing entry events.",
+                "operationId": "get_list_api_entry_event_list_get",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "event_id",
+                        "required": false,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Event Id",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "event_type",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/EntryEventType"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "start",
+                        "required": false,
+                        "schema": {
+                            "format": "date-time",
+                            "title": "Start",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "end",
+                        "required": false,
+                        "schema": {
+                            "format": "date-time",
+                            "title": "End",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/EntryEvent"
+                                    },
+                                    "title": "Response Get List Api Entry Event List Get",
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "A list of existing entry events"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get List",
+                "tags": [
+                    "entry_event"
+                ]
+            }
+        },
+        "/api/event": {
+            "post": {
+                "description": "Create a new event.",
+                "operationId": "create_event_api_event_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EventCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        },
+                        "description": "The created event."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Create Event",
+                "tags": [
+                    "event"
+                ]
+            }
+        },
+        "/api/event/list": {
+            "get": {
+                "description": "Get a list of existing events.",
+                "operationId": "get_list_api_event_list_get",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "start",
+                        "required": false,
+                        "schema": {
+                            "format": "date",
+                            "title": "Start",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "end",
+                        "required": false,
+                        "schema": {
+                            "format": "date",
+                            "title": "End",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Event"
+                                    },
+                                    "title": "Response Get List Api Event List Get",
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "A list of existing events."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get List",
+                "tags": [
+                    "event"
+                ]
+            }
+        },
+        "/api/event/{event_id}": {
+            "delete": {
+                "description": "Delete an existing event.",
+                "operationId": "delete_event_api_event__event_id__delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Event Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Delete Event",
+                "tags": [
+                    "event"
+                ]
+            },
+            "get": {
+                "description": "Get an existing event.",
+                "operationId": "get_event_api_event__event_id__get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Event Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        },
+                        "description": "The requested event."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get Event",
+                "tags": [
+                    "event"
+                ]
+            },
+            "put": {
+                "description": "Update an existing event.",
+                "operationId": "update_event_api_event__event_id__put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Event Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EventUpdate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        },
+                        "description": "The updated event."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Update Event",
+                "tags": [
+                    "event"
+                ]
+            }
+        },
+        "/api/guest": {
+            "post": {
+                "description": "Create a new guest.",
+                "operationId": "create_guest_api_guest_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GuestCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Guest"
+                                }
+                            }
+                        },
+                        "description": "The created guest."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Create Guest",
+                "tags": [
+                    "guest"
+                ]
+            }
+        },
+        "/api/guest/list": {
+            "get": {
+                "description": "Get a list of existing guests.",
+                "operationId": "get_list_api_guest_list_get",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "first_name_start",
+                        "required": false,
+                        "schema": {
+                            "title": "First Name Start",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "last_name_start",
+                        "required": false,
+                        "schema": {
+                            "title": "Last Name Start",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "buddy",
+                        "required": false,
+                        "schema": {
+                            "title": "Buddy",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "subscribed",
+                        "required": false,
+                        "schema": {
+                            "title": "Subscribed",
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Guest"
+                                    },
+                                    "title": "Response Get List Api Guest List Get",
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "A list of existing guests."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get List",
+                "tags": [
+                    "guest"
+                ]
+            }
+        },
+        "/api/guest/registration": {
+            "post": {
+                "description": "Create a registration for a new guest on site of an event.",
+                "operationId": "create_guest_on_site_api_guest_registration_post",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "event_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Event Id",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "arrived",
+                        "required": true,
+                        "schema": {
+                            "title": "Arrived",
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GuestCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Registration"
+                                }
+                            }
+                        },
+                        "description": "The created registration."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Create Guest On Site",
+                "tags": [
+                    "guest"
+                ]
+            }
+        },
+        "/api/guest/{guest_id}": {
+            "delete": {
+                "description": "Delete an existing guest.",
+                "operationId": "delete_guest_api_guest__guest_id__delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "guest_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Guest Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Delete Guest",
+                "tags": [
+                    "guest"
+                ]
+            },
+            "get": {
+                "description": "Get an existing guest.",
+                "operationId": "get_guest_api_guest__guest_id__get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "guest_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Guest Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Guest"
+                                }
+                            }
+                        },
+                        "description": "The requested guest."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get Guest",
+                "tags": [
+                    "guest"
+                ]
+            },
+            "put": {
+                "description": "Update an existing guest.",
+                "operationId": "update_guest_api_guest__guest_id__put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "guest_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Guest Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GuestUpdate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Guest"
+                                }
+                            }
+                        },
+                        "description": "The updated guest."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Update Guest",
+                "tags": [
+                    "guest"
+                ]
+            }
+        },
+        "/api/guests-on-site/{event_id}": {
+            "get": {
+                "description": "Get the number of guests on site of an event.",
+                "operationId": "get_guests_on_site_api_guests_on_site__event_id__get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "event_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Event Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GuestsOnSite"
+                                }
+                            }
+                        },
+                        "description": "The number of guests on site of an event."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get Guests On Site",
+                "tags": [
+                    "entry_event"
+                ]
+            }
+        },
+        "/api/registration": {
+            "post": {
+                "operationId": "create_registration_api_registration_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Registration"
+                                }
+                            }
+                        },
+                        "description": "The created registration."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Create Registration",
+                "tags": [
+                    "registration"
+                ]
+            }
+        },
+        "/api/registration/list": {
+            "get": {
+                "description": "Get a list of existing registrations.",
+                "operationId": "get_list_api_registration_list_get",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "arrived",
+                        "required": false,
+                        "schema": {
+                            "title": "Arrived",
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Registration"
+                                    },
+                                    "title": "Response Get List Api Registration List Get",
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "A list of existing registrations."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get List",
+                "tags": [
+                    "registration"
+                ]
+            }
+        },
+        "/api/registration/{registration_id}": {
+            "delete": {
+                "description": "Delete an existing registration.",
+                "operationId": "delete_registration_api_registration__registration_id__delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "registration_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Registration Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Delete Registration",
+                "tags": [
+                    "registration"
+                ]
+            },
+            "get": {
+                "description": "Get an existing registration.",
+                "operationId": "get_registration_api_registration__registration_id__get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "registration_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Registration Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Registration"
+                                }
+                            }
+                        },
+                        "description": "The requested registration."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Get Registration",
+                "tags": [
+                    "registration"
+                ]
+            },
+            "put": {
+                "description": "Update an existing registration.",
+                "operationId": "update_registration_api_registration__registration_id__put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "registration_id",
+                        "required": true,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Registration Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationUpdate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Registration"
+                                }
+                            }
+                        },
+                        "description": "The updated registration."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Update Registration",
+                "tags": [
+                    "registration"
+                ]
+            }
+        }
+    }
+}
