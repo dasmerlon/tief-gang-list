@@ -27,13 +27,15 @@ def createdb():
         print("Database already exists.")
         return
 
+    # Create the database
     create_database(engine.url)
 
     with engine.connect() as connection:
         connection.execute(text('create extension if not exists "uuid-ossp";'))
         connection.execute(text("commit;"))
 
-    Base.metadata.create_all()
+    # Create the actual database schema
+    Base.metadata.create_all(bind=engine)
 
 
 @cli.command()
@@ -42,6 +44,7 @@ def dropdb():
         print("Database doesn't exists.")
         return
 
+    # Drop the database
     drop_database(engine.url)
 
 

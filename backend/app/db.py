@@ -5,4 +5,4 @@ engine = create_engine(
     "postgresql+psycopg2://localhost/tiefgang", echo=True, future=True
 )
 
-Base = declarative_base(bind=engine)
+Base = declarative_base()
