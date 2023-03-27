@@ -42,7 +42,7 @@ async def get_registration(registration_id: UUID):
     return crud.registration.get(registration_id)
 
 
-@api_router.put(
+@api_router.patch(
     "/registration/{registration_id}",
     response_model=schemas.Registration,
     status_code=status.HTTP_200_OK,

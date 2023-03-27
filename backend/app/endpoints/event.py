@@ -44,7 +44,7 @@ async def get_event(event_id: UUID):
     return crud.event.get(event_id)
 
 
-@api_router.put(
+@api_router.patch(
     "/event/{event_id}",
     response_model=schemas.Event,
     status_code=status.HTTP_200_OK,

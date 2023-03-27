@@ -62,7 +62,7 @@ async def get_guest(guest_id: UUID):
     return crud.guest.get(guest_id)
 
 
-@api_router.put(
+@api_router.patch(
     "/guest/{guest_id}",
     response_model=schemas.Guest,
     status_code=status.HTTP_200_OK,
