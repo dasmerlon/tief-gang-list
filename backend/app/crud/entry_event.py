@@ -2,7 +2,7 @@ from datetime import datetime
 from uuid import UUID
 
 from fastapi_sqlalchemy import db
-from sqlalchemy import func
+from sqlalchemy import func, select
 
 from app import models, schemas
 
@@ -12,15 +12,15 @@ def create(entry_event: schemas.EntryEventCreate) -> int:
         event_type=entry_event.event_type, event_id=entry_event.event_id
     )
     db.session.add(db_entry_event)
-    db.session.commit()
 
+    db.session.commit()
     return get_guests_on_site(entry_event.event_id)
 
 
 def get_guests_on_site(event_id: UUID) -> int:
     arrived = (
-        db.session.query(func.count(models.EntryEvent.id))
-        .filter(
+        select(func.count(models.EntryEvent.id))
+        .where(
             models.EntryEvent.event_type == schemas.EntryEventType.arrival,
             models.EntryEvent.event_id == event_id,
         )
@@ -28,19 +28,15 @@ def get_guests_on_site(event_id: UUID) -> int:
     )
 
     departured = (
-        db.session.query(func.count(models.EntryEvent.id))
-        .filter(
+        select(func.count(models.EntryEvent.id))
+        .where(
             models.EntryEvent.event_type == schemas.EntryEventType.departure,
             models.EntryEvent.event_id == event_id,
         )
         .scalar_subquery()
     )
 
-    guests_on_site = db.session.query(
-        (arrived - departured).label("guests-on-site")
-    ).one()
-
-    return guests_on_site[0]
+    return db.session.execute(select(arrived - departured)).scalar()
 
 
 def get_list(
@@ -49,18 +45,18 @@ def get_list(
     start: datetime | None,
     end: datetime | None,
 ) -> list[models.EntryEvent]:
-    query = db.session.query(models.EntryEvent)
+    query = select(models.EntryEvent)
 
     if event_id is not None:
-        query = query.filter(models.EntryEvent.event_id == event_id)
+        query = query.where(models.EntryEvent.event_id == event_id)
 
     if event_type is not None:
-        query = query.filter(models.EntryEvent.event_type == event_type)
+        query = query.where(models.EntryEvent.event_type == event_type)
 
     if start is not None:
-        query = query.filter(models.EntryEvent.created_at >= start)
+        query = query.where(models.EntryEvent.created_at >= start)
 
     if end is not None:
-        query = query.filter(models.EntryEvent.created_at <= end)
+        query = query.where(models.EntryEvent.created_at <= end)
 
-    return query.all()
+    return db.session.scalars(query).all()
