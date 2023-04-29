@@ -2,7 +2,7 @@ import { EntryEventApi, EventApi, GuestApi, RegistrationApi } from "./api/apis";
 import { Configuration } from "./api/runtime";
 
 // Create the default configuration for our backend server.
-const apiConfiguration = new Configuration({ basePath: "/api/" });
+const apiConfiguration = new Configuration({ basePath: "" });
 
 // Initialize all api namespaces with that configuration.
 const eventApi = new EventApi(apiConfiguration);
