@@ -12,8 +12,8 @@ repository = "https://github.com/dasmerlon/tief-gang-list"
 [tool.poetry.dependencies]
 python = ">=3.10, <4"
 fastapi = { extras = ["all"], version = "^0.95" }
-SQLAlchemy-Utils = "^0.40"
-FastAPI-SQLAlchemy = "^0.2"
+sqlalchemy-utils = "^0.41"
+fastapi-sqlalchemy = "^0.2"
 psycopg2 = "^2.9.5"
 typer = { extras = ["all"], version = "^0.7" }
 
