@@ -30,7 +30,6 @@ def seed_db():
         "Psynauten",
         "Drumroll",
     ]
-    event_names.reverse()
 
     # We make one event each month
     # Compute the dates for past events
@@ -105,7 +104,7 @@ def entities_for_event_and_guests(
         )
         session.add(entry_event)
 
-        # 50/50 chance that the guest was registered when they left
+        # 50/50 chance that the guest was tracked when they left
         if fake.boolean():
             entry_event = models.EntryEvent(
                 event_id=event.id,

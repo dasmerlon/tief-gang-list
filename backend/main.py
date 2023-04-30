@@ -7,7 +7,7 @@ from fastapi.openapi.utils import get_openapi
 import typer
 
 from app.db import engine, Base
-from app.helper.seed import seed_db
+from app.helpers.seed import seed_db
 from app import app, models, endpoints  # noqa F403 F401
 
 cli = typer.Typer()
