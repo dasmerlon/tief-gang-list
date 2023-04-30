@@ -13,13 +13,13 @@ EntryEventType: Enum = Enum(
 
 
 class EntryEvent(Base):
-    __tablename__ = "entry_event"
+    __tablename__ = "entry_events"
 
     id = Column(
         UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
     )
     event_type = Column(EntryEventType, nullable=False)
-    event_id = Column(ForeignKey("event.id", ondelete="CASCADE"), nullable=False)
+    event_id = Column(ForeignKey("events.id", ondelete="CASCADE"), nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
 
