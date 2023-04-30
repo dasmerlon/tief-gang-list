@@ -25,9 +25,14 @@ async def create_registration(registration: schemas.RegistrationCreate):
     tags=["registration"],
     response_description="A list of existing registrations.",
 )
-async def get_list(arrived: bool | None = None):
+async def get_list(
+    arrived: bool | None = None,
+    buddy: str | None = None,
+    guest_id: UUID | None = None,
+    event_id: UUID | None = None,
+):
     """Get a list of existing registrations."""
-    return crud.registration.get_list(arrived)
+    return crud.registration.get_list(arrived, buddy, guest_id, event_id)
 
 
 @api_router.get(

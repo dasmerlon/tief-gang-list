@@ -24,11 +24,25 @@ def get(registration_id: UUID) -> models.Registration | None:
     return db.session.get(models.Registration, registration_id)
 
 
-def get_list(arrived: bool | None) -> list[models.Registration]:
+def get_list(
+    arrived: bool | None,
+    buddy: str | None,
+    guest_id: UUID | None,
+    event_id: UUID | None,
+) -> list[models.Registration]:
     query = select(models.Registration)
 
     if arrived is not None:
         query = query.where(models.Registration.arrived == arrived)
+
+    if buddy is not None:
+        query = query.where(models.Registration.buddy == buddy)
+
+    if guest_id is not None:
+        query = query.join(models.Registration.guest).where(models.Guest.id == guest_id)
+
+    if event_id is not None:
+        query = query.join(models.Registration.event).where(models.Event.id == event_id)
 
     return db.session.scalars(query).all()
 
