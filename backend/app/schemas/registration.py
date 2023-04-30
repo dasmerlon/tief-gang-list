@@ -1,8 +1,9 @@
 from datetime import datetime
 
-from pydantic import UUID4, BaseModel
+from pydantic import UUID4, BaseModel, validator
 
 from app import schemas
+from app.helpers.validators import check_string_not_empty
 
 
 class RegistrationBase(BaseModel):
@@ -12,6 +13,17 @@ class RegistrationBase(BaseModel):
 class RegistrationCreate(RegistrationBase):
     guest_id: UUID4
     event_id: UUID4
+    buddy: str
+
+    _not_empty = validator("buddy", allow_reuse=True)(check_string_not_empty)
+
+
+class RegistrationOnSite(RegistrationBase):
+    guest: schemas.GuestCreate
+    event_id: UUID4
+    buddy: str
+
+    _not_empty = validator("buddy", allow_reuse=True)(check_string_not_empty)
 
 
 class RegistrationUpdate(RegistrationBase):
@@ -23,6 +35,7 @@ class Registration(RegistrationBase):
     created_at: datetime
     guest: schemas.Guest
     event: schemas.Event
+    buddy: str
 
     class Config:
         orm_mode = True

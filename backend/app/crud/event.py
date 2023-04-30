@@ -37,7 +37,7 @@ def get_list(start: date | None, end: date | None) -> list[models.Event]:
 
 
 def update(event_id: UUID, event_update: schemas.EventUpdate) -> models.Event:
-    changes = event_update.dict(exclude_unset=True)
+    changes = event_update.dict()
 
     query = sql_update(models.Event).where(models.Event.id == event_id).values(changes)
     db.session.execute(query)

@@ -11,6 +11,7 @@ def create(registration: schemas.RegistrationCreate) -> models.Registration:
     db_registration = models.Registration(
         guest_id=registration.guest_id,
         event_id=registration.event_id,
+        buddy=registration.buddy,
         arrived=registration.arrived,
     )
     db.session.add(db_registration)
@@ -19,15 +20,53 @@ def create(registration: schemas.RegistrationCreate) -> models.Registration:
     return db_registration
 
 
+def create_on_site(
+    registration_on_site: schemas.RegistrationOnSite,
+) -> models.Registration:
+    db_guest = models.Guest(
+        first_name=registration_on_site.guest.first_name,
+        last_name=registration_on_site.guest.last_name,
+        email=registration_on_site.guest.email,
+        subscribed=registration_on_site.guest.subscribed,
+    )
+    db.session.add(db_guest)
+    db.session.flush()
+
+    registration = schemas.RegistrationCreate(
+        guest_id=db_guest.id,
+        event_id=registration_on_site.event_id,
+        buddy=registration_on_site.buddy,
+        arrived=registration_on_site.arrived,
+    )
+    registration = create(registration)
+
+    db.session.commit()
+    return registration
+
+
 def get(registration_id: UUID) -> models.Registration | None:
     return db.session.get(models.Registration, registration_id)
 
 
-def get_list(arrived: bool | None) -> list[models.Registration]:
+def get_list(
+    arrived: bool | None,
+    buddy: str | None,
+    guest_id: UUID | None,
+    event_id: UUID | None,
+) -> list[models.Registration]:
     query = select(models.Registration)
 
     if arrived is not None:
         query = query.where(models.Registration.arrived == arrived)
+
+    if buddy is not None:
+        query = query.where(models.Registration.buddy == buddy)
+
+    if guest_id is not None:
+        query = query.join(models.Registration.guest).where(models.Guest.id == guest_id)
+
+    if event_id is not None:
+        query = query.join(models.Registration.event).where(models.Event.id == event_id)
 
     return db.session.scalars(query).all()
 
@@ -35,7 +74,7 @@ def get_list(arrived: bool | None) -> list[models.Registration]:
 def update(
     registration_id: UUID, registration_update: schemas.RegistrationUpdate
 ) -> models.Registration:
-    changes = registration_update.dict(exclude_unset=True)
+    changes = registration_update.dict()
 
     query = (
         sql_update(models.Registration)
