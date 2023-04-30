@@ -11,11 +11,11 @@ class Guest(Base):
     id = Column(
         UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
     )
-    first_name = Column(String)
-    last_name = Column(String)
+    first_name = Column(String, nullable=False)
+    last_name = Column(String, nullable=False)
     # TODO: Make email unique as soon as we start working with QR codes
     email = Column(String)
-    subscribed = Column(Boolean)
+    subscribed = Column(Boolean, nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
     updated_at = Column(

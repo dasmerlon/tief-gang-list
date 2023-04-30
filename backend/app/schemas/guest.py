@@ -2,10 +2,10 @@ from pydantic import UUID4, BaseModel, EmailStr
 
 
 class GuestBase(BaseModel):
-    first_name: str | None = None
-    last_name: str | None = None
+    first_name: str
+    last_name: str
     email: EmailStr | None = None
-    subscribed: bool | None = None
+    subscribed: bool = False
 
 
 class GuestCreate(GuestBase):
