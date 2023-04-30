@@ -11,7 +11,6 @@ def create(guest: schemas.GuestCreate) -> models.Guest:
     db_guest = models.Guest(
         first_name=guest.first_name,
         last_name=guest.last_name,
-        buddy=guest.buddy,
         email=guest.email,
         subscribed=guest.subscribed,
     )
@@ -27,7 +26,6 @@ def create_on_site(
     db_guest = models.Guest(
         first_name=guest.first_name,
         last_name=guest.last_name,
-        buddy=guest.buddy,
         email=guest.email,
         subscribed=guest.subscribed,
     )
@@ -49,7 +47,6 @@ def get(guest_id: UUID) -> models.Guest | None:
 def get_list(
     first_name_start: str | None,
     last_name_start: str | None,
-    buddy: str | None,
     subscribed: bool | None,
 ) -> list[models.Guest]:
     query = select(models.Guest)
@@ -63,9 +60,6 @@ def get_list(
         query = query.where(
             func.lower(models.Guest.last_name).startswith(func.lower(last_name_start))
         )
-
-    if buddy is not None:
-        query = query.where(models.Guest.buddy == buddy)
 
     if subscribed is not None:
         query = query.where(models.Guest.subscribed == subscribed)

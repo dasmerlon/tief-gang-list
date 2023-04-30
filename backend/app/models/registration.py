@@ -3,6 +3,7 @@ from sqlalchemy import (
     Column,
     DateTime,
     ForeignKey,
+    String,
     UniqueConstraint,
     func,
     text,
@@ -23,11 +24,9 @@ class Registration(Base):
     guest_id = Column(ForeignKey("guest.id", ondelete="CASCADE"), nullable=False)
     event_id = Column(ForeignKey("event.id", ondelete="CASCADE"), nullable=False)
     arrived = Column(Boolean, nullable=False)
+    buddy = Column(String, nullable=False)
 
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
-    updated_at = Column(
-        DateTime, server_default=func.now(), onupdate=func.now(), nullable=False
-    )
 
     guest = relationship("Guest", back_populates="registrations")
     event = relationship("Event", back_populates="registrations")
@@ -38,5 +37,6 @@ class Registration(Base):
             f"guest_id={self.guest_id}, "
             f"event_id={self.event_id}), "
             f"arrived={self.arrived}), "
+            f"buddy={self.buddy}), "
             f"created_at={self.created_at}), "
         )

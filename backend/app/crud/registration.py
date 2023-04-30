@@ -11,6 +11,7 @@ def create(registration: schemas.RegistrationCreate) -> models.Registration:
     db_registration = models.Registration(
         guest_id=registration.guest_id,
         event_id=registration.event_id,
+        buddy=registration.buddy,
         arrived=registration.arrived,
     )
     db.session.add(db_registration)

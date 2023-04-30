@@ -13,8 +13,7 @@ class Guest(Base):
     )
     first_name = Column(String)
     last_name = Column(String)
-    buddy = Column(String)
-    # TODO: Make this unique as soon as we start working with QR codes
+    # TODO: Make email unique as soon as we start working with QR codes
     email = Column(String)
     subscribed = Column(Boolean)
 
@@ -30,7 +29,6 @@ class Guest(Base):
             f"Guest(id={self.id}, "
             f"first_name={self.first_name}, "
             f"last_name={self.last_name}), "
-            f"buddy={self.buddy}), "
             f"email={self.email}), "
             f"subscribed={self.subscribed}), "
         )

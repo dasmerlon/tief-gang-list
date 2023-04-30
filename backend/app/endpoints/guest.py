@@ -43,11 +43,10 @@ async def create_guest_on_site(
 async def get_list(
     first_name_start: str | None = None,
     last_name_start: str | None = None,
-    buddy: str | None = None,
     subscribed: bool | None = None,
 ):
     """Get a list of existing guests."""
-    return crud.guest.get_list(first_name_start, last_name_start, buddy, subscribed)
+    return crud.guest.get_list(first_name_start, last_name_start, subscribed)
 
 
 @api_router.get(

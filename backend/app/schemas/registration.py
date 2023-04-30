@@ -12,6 +12,7 @@ class RegistrationBase(BaseModel):
 class RegistrationCreate(RegistrationBase):
     guest_id: UUID4
     event_id: UUID4
+    buddy: str
 
 
 class RegistrationUpdate(RegistrationBase):
@@ -23,6 +24,7 @@ class Registration(RegistrationBase):
     created_at: datetime
     guest: schemas.Guest
     event: schemas.Event
+    buddy: str
 
     class Config:
         orm_mode = True
