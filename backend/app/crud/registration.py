@@ -38,9 +38,10 @@ def create_on_site(
         buddy=registration_on_site.buddy,
         arrived=registration_on_site.arrived,
     )
+    registration = create(registration)
 
     db.session.commit()
-    return create(registration)
+    return registration
 
 
 def get(registration_id: UUID) -> models.Registration | None:
