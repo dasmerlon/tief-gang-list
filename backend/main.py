@@ -7,6 +7,7 @@ from fastapi.openapi.utils import get_openapi
 import typer
 
 from app.db import engine, Base
+from app.helper.seed import seed_db
 from app import app, models, endpoints  # noqa F403 F401
 
 cli = typer.Typer()
@@ -27,14 +28,17 @@ def createdb():
         print("Database already exists.")
         return
 
+    print("Creating database")
     # Create the database
     create_database(engine.url)
 
+    print("Initializing postgres extensions")
     with engine.connect() as connection:
         connection.execute(text('create extension if not exists "uuid-ossp";'))
         connection.execute(text("commit;"))
 
     # Create the actual database schema
+    print("Creating schema")
     Base.metadata.create_all(bind=engine)
 
 
@@ -65,6 +69,12 @@ def generate_api_spec():
             sort_keys=True,
             indent=4,
         )
+
+
+@cli.command()
+def seed():
+    print("Creating seed data.")
+    seed_db()
 
 
 cli()

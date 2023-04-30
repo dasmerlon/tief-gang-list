@@ -9,9 +9,13 @@ createdb:
 dropdb:
     poetry run python ./main.py dropdb
 
+seed: resetdb
+    poetry run python ./main.py seed
+
 resetdb: dropdb createdb
 
 setup:
+    poetry lock --no-update
     poetry install
 
 lint:
