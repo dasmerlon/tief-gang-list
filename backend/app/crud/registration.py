@@ -73,7 +73,7 @@ def get_list(
 def update(
     registration_id: UUID, registration_update: schemas.RegistrationUpdate
 ) -> models.Registration:
-    changes = registration_update.dict(exclude_unset=True)
+    changes = registration_update.dict()
 
     query = (
         sql_update(models.Registration)

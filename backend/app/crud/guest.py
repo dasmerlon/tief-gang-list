@@ -48,7 +48,7 @@ def get_list(
 
 
 def update(guest_id: UUID, guest_update: schemas.GuestUpdate) -> models.Guest:
-    changes = guest_update.dict(exclude_unset=True)
+    changes = guest_update.dict()
 
     query = sql_update(models.Guest).where(models.Guest.id == guest_id).values(changes)
     db.session.execute(query)

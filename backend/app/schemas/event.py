@@ -2,30 +2,23 @@ from datetime import date, datetime
 
 from pydantic import UUID4, BaseModel, validator
 
+from app.helpers.validators import check_string_not_empty
+
 
 class EventBase(BaseModel):
     name: str
     date: date
     registration_deadline: datetime | None = None
 
+    _not_empty = validator("name", allow_reuse=True)(check_string_not_empty)
+
 
 class EventCreate(EventBase):
     pass
 
 
-# Python is stupid.
-# We have to use a type alias to avoid problems with the pipe operator.
-better_date = date
-
-
 class EventUpdate(EventBase):
-    name: str | None = None
-    date: better_date | None = None
-
-    @validator("name", "date")
-    def prevent_none(cls, value):
-        assert value is not None, "May not be None."
-        return value
+    pass
 
 
 class Event(EventBase):
