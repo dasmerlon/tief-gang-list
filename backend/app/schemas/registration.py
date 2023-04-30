@@ -15,6 +15,12 @@ class RegistrationCreate(RegistrationBase):
     buddy: str
 
 
+class RegistrationOnSite(RegistrationBase):
+    guest: schemas.GuestCreate
+    event_id: UUID4
+    buddy: str
+
+
 class RegistrationUpdate(RegistrationBase):
     pass
 

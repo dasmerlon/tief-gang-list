@@ -20,6 +20,29 @@ def create(registration: schemas.RegistrationCreate) -> models.Registration:
     return db_registration
 
 
+def create_on_site(
+    registration_on_site: schemas.RegistrationOnSite,
+) -> models.Registration:
+    db_guest = models.Guest(
+        first_name=registration_on_site.guest.first_name,
+        last_name=registration_on_site.guest.last_name,
+        email=registration_on_site.guest.email,
+        subscribed=registration_on_site.guest.subscribed,
+    )
+    db.session.add(db_guest)
+    db.session.flush()
+
+    registration = schemas.RegistrationCreate(
+        guest_id=db_guest.id,
+        event_id=registration_on_site.event_id,
+        buddy=registration_on_site.buddy,
+        arrived=registration_on_site.arrived,
+    )
+
+    db.session.commit()
+    return create(registration)
+
+
 def get(registration_id: UUID) -> models.Registration | None:
     return db.session.get(models.Registration, registration_id)
 

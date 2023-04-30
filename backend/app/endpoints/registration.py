@@ -18,6 +18,18 @@ async def create_registration(registration: schemas.RegistrationCreate):
     return crud.registration.create(registration)
 
 
+@api_router.post(
+    "/registration/on-site",
+    response_model=schemas.Registration,
+    status_code=status.HTTP_201_CREATED,
+    tags=["registration"],
+    response_description="The created registration.",
+)
+async def create_registration_on_site(registration_on_site: schemas.RegistrationOnSite):
+    """Create a registration for a new guest on site of an event."""
+    return crud.registration.create_on_site(registration_on_site)
+
+
 @api_router.get(
     "/registration/list",
     response_model=list[schemas.Registration],

@@ -19,20 +19,6 @@ async def create_guest(guest: schemas.GuestCreate):
     return crud.guest.create(guest)
 
 
-@api_router.post(
-    "/guest/registration",
-    response_model=schemas.Registration,
-    status_code=status.HTTP_201_CREATED,
-    tags=["guest"],
-    response_description="The created registration.",
-)
-async def create_guest_on_site(
-    guest: schemas.GuestCreate, event_id: UUID, arrived: bool
-):
-    """Create a registration for a new guest on site of an event."""
-    return crud.guest.create_on_site(guest, event_id, arrived)
-
-
 @api_router.get(
     "/guest/list",
     response_model=list[schemas.Guest],
