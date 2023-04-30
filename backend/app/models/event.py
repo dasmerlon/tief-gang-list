@@ -6,7 +6,7 @@ from app.db import Base
 
 
 class Event(Base):
-    __tablename__ = "event"
+    __tablename__ = "events"
 
     id = Column(
         UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")

@@ -6,7 +6,7 @@ from app.db import Base
 
 
 class Guest(Base):
-    __tablename__ = "guest"
+    __tablename__ = "guests"
 
     id = Column(
         UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
