@@ -22,6 +22,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6",
-    "typescript": "^4"
+    "typescript": "^5"
   }
 }
