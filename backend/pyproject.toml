@@ -10,13 +10,13 @@ license = "MIT"
 repository = "https://github.com/dasmerlon/tief-gang-list"
 
 [tool.poetry.dependencies]
-python = ">=3.10, <4"
+python = ">=3.11, <4"
 python-dateutil = "^2"
 fastapi = { extras = ["all"], version = "^0.95" }
 sqlalchemy-utils = "^0.41"
 fastapi-sqlalchemy = "^0.2"
 psycopg2 = "^2.9.5"
-typer = { extras = ["all"], version = "^0.7" }
+typer = { extras = ["all"], version = "^0.9" }
 
 [tool.poetry.dev-dependencies]
 black = "^23"
