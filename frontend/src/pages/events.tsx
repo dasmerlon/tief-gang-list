@@ -1,7 +1,7 @@
 import { Event as ApiEvent } from "../api/models";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { eventApi } from "../apis";
+import Button from "@mui/material/Button";
 
 function Events() {
   const [events, setEvents] = useState<ApiEvent[] | undefined>(undefined);
@@ -18,7 +18,9 @@ function Events() {
         return (
           <li key={index}>
             {event.name}
-            <Link to={"event/" + event.id}> Go to event</Link>{" "}
+            <Button variant="contained" href={"event/" + event.id}>
+              Go to event
+            </Button>
           </li>
         );
       })}
