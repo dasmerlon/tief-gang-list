@@ -1,7 +1,7 @@
 run:
     poetry run python ./main.py run
 
-run-reset: resetdb run
+run-reset: seed run
 
 createdb:
     poetry run python ./main.py createdb

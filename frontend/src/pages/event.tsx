@@ -7,13 +7,13 @@ function EventPage() {
   const [event, setEvent] = useState<ApiEvent | undefined>(undefined);
   const { eventId } = useParams();
 
-  if (eventId) {
-    useEffect(() => {
+  useEffect(() => {
+    if (eventId) {
       eventApi
         .getEventApiEventEventIdGet({ eventId })
         .then((event) => setEvent(event));
-    }, []);
-  }
+    }
+  }, [eventId]);
 
   return <h1>Looking at event: {event?.name} </h1>;
 }

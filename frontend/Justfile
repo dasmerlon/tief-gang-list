@@ -2,7 +2,6 @@ run:
     npx parcel --open
 
 build:
-    #!/bin/bash
     rm -rf dist
     just generate-api-client
     npx parcel build
@@ -15,6 +14,10 @@ lint *args:
     npx tsc
 
 generate-api-client *args:
+    #!/bin/bash
+    cd ../backend
+    just generate-api-spec
+    cd ../frontend
     rm -rf src/api
     npx openapi-generator-cli generate \
         --input-spec ../backend/openapi.json \
