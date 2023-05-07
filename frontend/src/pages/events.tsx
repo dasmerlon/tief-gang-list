@@ -16,7 +16,7 @@ function Events() {
       <h1>Events</h1>
       {events?.map((event, index) => {
         return (
-          <li key={index}>
+          <li className="" key={index}>
             {event.name}
             <Button variant="contained" href={"event/" + event.id}>
               Go to event

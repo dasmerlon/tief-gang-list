@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A guest management tool for the Tiefgang hackspace",
   "author": "Merle Hoffmann <hoffmannmerle@web.de>, Arne Beer <contact@arne.beer>",
-  "source": "public/index.html",
+  "source": "src/index.html",
   "private": true,
   "license": "MIT",
   "devDependencies": {
@@ -15,8 +15,10 @@
     "eslint": "^8",
     "eslint-plugin-prettier": "^4",
     "parcel": "^2",
+    "postcss": "^8.4.23",
     "prettier": "^2",
-    "process": "^0"
+    "process": "^0",
+    "tailwindcss": "^3.3.2"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
