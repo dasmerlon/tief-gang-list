@@ -127,15 +127,15 @@
                         "type": "string"
                     }
                 },
+                "required": [
+                    "name",
+                    "date"
+                ],
                 "title": "EventUpdate",
                 "type": "object"
             },
             "Guest": {
                 "properties": {
-                    "buddy": {
-                        "title": "Buddy",
-                        "type": "string"
-                    },
                     "email": {
                         "format": "email",
                         "title": "Email",
@@ -155,11 +155,14 @@
                         "type": "string"
                     },
                     "subscribed": {
+                        "default": false,
                         "title": "Subscribed",
                         "type": "boolean"
                     }
                 },
                 "required": [
+                    "first_name",
+                    "last_name",
                     "id"
                 ],
                 "title": "Guest",
@@ -167,10 +170,6 @@
             },
             "GuestCreate": {
                 "properties": {
-                    "buddy": {
-                        "title": "Buddy",
-                        "type": "string"
-                    },
                     "email": {
                         "format": "email",
                         "title": "Email",
@@ -185,19 +184,20 @@
                         "type": "string"
                     },
                     "subscribed": {
+                        "default": false,
                         "title": "Subscribed",
                         "type": "boolean"
                     }
                 },
+                "required": [
+                    "first_name",
+                    "last_name"
+                ],
                 "title": "GuestCreate",
                 "type": "object"
             },
             "GuestUpdate": {
                 "properties": {
-                    "buddy": {
-                        "title": "Buddy",
-                        "type": "string"
-                    },
                     "email": {
                         "format": "email",
                         "title": "Email",
@@ -212,10 +212,15 @@
                         "type": "string"
                     },
                     "subscribed": {
+                        "default": false,
                         "title": "Subscribed",
                         "type": "boolean"
                     }
                 },
+                "required": [
+                    "first_name",
+                    "last_name"
+                ],
                 "title": "GuestUpdate",
                 "type": "object"
             },
@@ -251,6 +256,10 @@
                         "title": "Arrived",
                         "type": "boolean"
                     },
+                    "buddy": {
+                        "title": "Buddy",
+                        "type": "string"
+                    },
                     "created_at": {
                         "format": "date-time",
                         "title": "Created At",
@@ -273,7 +282,8 @@
                     "id",
                     "created_at",
                     "guest",
-                    "event"
+                    "event",
+                    "buddy"
                 ],
                 "title": "Registration",
                 "type": "object"
@@ -283,6 +293,10 @@
                     "arrived": {
                         "title": "Arrived",
                         "type": "boolean"
+                    },
+                    "buddy": {
+                        "title": "Buddy",
+                        "type": "string"
                     },
                     "event_id": {
                         "format": "uuid4",
@@ -298,9 +312,38 @@
                 "required": [
                     "arrived",
                     "guest_id",
-                    "event_id"
+                    "event_id",
+                    "buddy"
                 ],
                 "title": "RegistrationCreate",
+                "type": "object"
+            },
+            "RegistrationOnSite": {
+                "properties": {
+                    "arrived": {
+                        "title": "Arrived",
+                        "type": "boolean"
+                    },
+                    "buddy": {
+                        "title": "Buddy",
+                        "type": "string"
+                    },
+                    "event_id": {
+                        "format": "uuid4",
+                        "title": "Event Id",
+                        "type": "string"
+                    },
+                    "guest": {
+                        "$ref": "#/components/schemas/GuestCreate"
+                    }
+                },
+                "required": [
+                    "arrived",
+                    "guest",
+                    "event_id",
+                    "buddy"
+                ],
+                "title": "RegistrationOnSite",
                 "type": "object"
             },
             "RegistrationUpdate": {
@@ -654,9 +697,9 @@
                     "event"
                 ]
             },
-            "put": {
+            "patch": {
                 "description": "Update an existing event.",
-                "operationId": "update_event_api_event__event_id__put",
+                "operationId": "update_event_api_event__event_id__patch",
                 "parameters": [
                     {
                         "in": "path",
@@ -774,15 +817,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "buddy",
-                        "required": false,
-                        "schema": {
-                            "title": "Buddy",
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "in": "query",
                         "name": "subscribed",
                         "required": false,
                         "schema": {
@@ -818,69 +852,6 @@
                     }
                 },
                 "summary": "Get List",
-                "tags": [
-                    "guest"
-                ]
-            }
-        },
-        "/api/guest/registration": {
-            "post": {
-                "description": "Create a registration for a new guest on site of an event.",
-                "operationId": "create_guest_on_site_api_guest_registration_post",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "event_id",
-                        "required": true,
-                        "schema": {
-                            "format": "uuid",
-                            "title": "Event Id",
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "in": "query",
-                        "name": "arrived",
-                        "required": true,
-                        "schema": {
-                            "title": "Arrived",
-                            "type": "boolean"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/GuestCreate"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "201": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Registration"
-                                }
-                            }
-                        },
-                        "description": "The created registration."
-                    },
-                    "422": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                        "description": "Validation Error"
-                    }
-                },
-                "summary": "Create Guest On Site",
                 "tags": [
                     "guest"
                 ]
@@ -964,9 +935,9 @@
                     "guest"
                 ]
             },
-            "put": {
+            "patch": {
                 "description": "Update an existing guest.",
-                "operationId": "update_guest_api_guest__guest_id__put",
+                "operationId": "update_guest_api_guest__guest_id__patch",
                 "parameters": [
                     {
                         "in": "path",
@@ -1115,6 +1086,35 @@
                             "title": "Arrived",
                             "type": "boolean"
                         }
+                    },
+                    {
+                        "in": "query",
+                        "name": "buddy",
+                        "required": false,
+                        "schema": {
+                            "title": "Buddy",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "guest_id",
+                        "required": false,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Guest Id",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "event_id",
+                        "required": false,
+                        "schema": {
+                            "format": "uuid",
+                            "title": "Event Id",
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -1144,6 +1144,48 @@
                     }
                 },
                 "summary": "Get List",
+                "tags": [
+                    "registration"
+                ]
+            }
+        },
+        "/api/registration/on-site": {
+            "post": {
+                "description": "Create a registration for a new guest on site of an event.",
+                "operationId": "create_registration_on_site_api_registration_on_site_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationOnSite"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Registration"
+                                }
+                            }
+                        },
+                        "description": "The created registration."
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    }
+                },
+                "summary": "Create Registration On Site",
                 "tags": [
                     "registration"
                 ]
@@ -1227,9 +1269,9 @@
                     "registration"
                 ]
             },
-            "put": {
+            "patch": {
                 "description": "Update an existing registration.",
-                "operationId": "update_registration_api_registration__registration_id__put",
+                "operationId": "update_registration_api_registration__registration_id__patch",
                 "parameters": [
                     {
                         "in": "path",
