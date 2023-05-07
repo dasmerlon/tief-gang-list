@@ -66,7 +66,6 @@ def create_guests(session: Session, fake: Faker) -> list[models.Guest]:
         guest = models.Guest(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
-            buddy="crew",
             email=fake.ascii_free_email(),
             subscribed=fake.boolean(),
         )
@@ -93,7 +92,10 @@ def entities_for_event_and_guests(
     for guest in selected_guests:
         # Register the guest for the event
         registration = models.Registration(
-            guest_id=guest.id, event_id=event.id, arrived=True
+            guest_id=guest.id,
+            event_id=event.id,
+            arrived=True,
+            buddy="crew",
         )
         session.add(registration)
 
