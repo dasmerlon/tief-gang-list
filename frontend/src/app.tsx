@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Root from "./layout/root";
+import AdminLayout from "./layout/admin_layout";
 import ErrorPage from "./pages/error";
 import Event from "./pages/event";
 import Events from "./pages/events";
@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
+        <Route path="/" element={<AdminLayout />} errorElement={<ErrorPage />}>
           <Route path="/" element={<Events />} />
           <Route path="/event/:eventId" element={<Event />} />
         </Route>
