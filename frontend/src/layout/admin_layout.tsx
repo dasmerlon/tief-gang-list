@@ -1,13 +1,13 @@
-import { Outlet, Link } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import { Outlet } from "react-router-dom";
 import Navigation from "../components/navigation";
 
 export default function AdminLayout() {
   return (
     <div className="preflight flex flex-row">
+      <CssBaseline />
       <Navigation />
-      <div id="page">
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 }

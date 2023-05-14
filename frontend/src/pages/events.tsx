@@ -1,15 +1,19 @@
 import { Event as ApiEvent } from "../api/models";
 import { useEffect, useState } from "react";
 import { eventApi } from "../apis";
-import Button from "@mui/material/Button";
-import { Paper } from "@mui/material/Paper";
-import TableContainer from "@mui/material/TableContainer";
-import Table from "@mui/material/Table";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableBody from "@mui/material/TableBody";
+import {
+  Button,
+  Paper,
+  TableContainer,
+  Table,
+  TableRow,
+  TableCell,
+  TableHead,
+  TableBody,
+} from "@mui/material";
 import { format_date } from "../i18n";
+import { Link } from "react-router-dom";
+import PageLayout from "../layout/page_layout";
 
 function Events() {
   const [events, setEvents] = useState<ApiEvent[] | undefined>(undefined);
@@ -20,8 +24,7 @@ function Events() {
   }, []);
 
   return (
-    <>
-      <h1>Events</h1>
+    <PageLayout title="Events">
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
@@ -43,8 +46,8 @@ function Events() {
                   </TableCell>
                   <TableCell align="right">{format_date(event.date)}</TableCell>
                   <TableCell align="right">
-                    <Button variant="contained" href={"event/" + event.id}>
-                      Edit
+                    <Button variant="contained">
+                      <Link to={"event/" + event.id}>Edit</Link>
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -53,7 +56,7 @@ function Events() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </PageLayout>
   );
 }
 

@@ -33,6 +33,8 @@ def get_list(start: date | None, end: date | None) -> list[models.Event]:
     if end is not None:
         query = query.where(models.Event.date <= end)
 
+    query = query.order_by(models.Event.date.desc())
+
     return db.session.scalars(query).all()
 
 
