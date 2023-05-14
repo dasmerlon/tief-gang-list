@@ -1,53 +1,83 @@
-import Box from "@mui/material/Box";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import MenuIcon from "@mui/icons-material/Menu";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import { Outlet, Link } from "react-router-dom";
+import {
+  Box,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import ListIcon from "@mui/icons-material/List";
+import React from "react";
+import { Link } from "react-router-dom";
+
+const drawerWidth = "15rem";
 
 export default function Navigation() {
-  const SideBar = () => {
-    return (
-      <AppBar className="hidden sm:flex">
-        <Toolbar variant="dense">
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            className="mr-2"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
-            Side Bar
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    );
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  const BottomNav = () => {
-    return (
-      <BottomNavigation showLabels className="sm:hidden">
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-      </BottomNavigation>
-    );
-  };
+  const links = [
+    {
+      link: <Link to="/events/new">Create New Event</Link>,
+      icon: <ListIcon />,
+    },
+    {
+      link: <Link to="/events">List of Events</Link>,
+      icon: <ListIcon />,
+    },
+  ];
 
-  const links = (
-    <>
-      <Link to={`events/current`}>Current Event</Link>
-      <Link to={`events`}>List of Events</Link>
-    </>
+  const drawer = (
+    <div>
+      <List>
+        {links.map((link, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{link.icon}</ListItemIcon>
+              <ListItemText>{link.link}</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+    </div>
   );
 
-  return <SideBar />;
+  return (
+    <Box
+      component="nav"
+      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+      aria-label="mailbox folders"
+    >
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+        }}
+      >
+        {drawer}
+      </Drawer>
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", sm: "block" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
+    </Box>
+  );
 }
