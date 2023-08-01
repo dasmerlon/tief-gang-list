@@ -21,7 +21,7 @@ typer = { extras = ["all"], version = "^0.9" }
 [tool.poetry.dev-dependencies]
 black = "^23"
 isort = "^5"
-Faker = "^18"
+Faker = "^19"
 flake8 = "^6"
 autoflake = "^2"
 
