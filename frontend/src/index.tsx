@@ -8,6 +8,6 @@ if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <RouterProvider router={AppRouter} />
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }
