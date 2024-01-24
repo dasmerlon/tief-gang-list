@@ -21,6 +21,9 @@ typer = { extras = ["all"], version = "^0.9" }
 [tool.poetry.dev-dependencies]
 ruff = "^0.1"
 
+# Check the Ruff documentation for more info on how to configure this
+# General docs: https://docs.astral.sh/ruff/configuration/
+# Explicit docs for individual settings: https://docs.astral.sh/ruff/settings/
 [tool.ruff]
 line-length = 88
 indent-width = 4
