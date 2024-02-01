@@ -12,7 +12,7 @@ repository = "https://github.com/dasmerlon/tief-gang-list"
 [tool.poetry.dependencies]
 python = ">=3.11, <4"
 python-dateutil = "^2"
-fastapi = { extras = ["all"], version = "^0.108" }
+fastapi = { extras = ["all"], version = "^0.109" }
 sqlalchemy-utils = "^0.41"
 fastapi-sqlalchemy = "^0.2"
 psycopg2 = "^2.9.5"
