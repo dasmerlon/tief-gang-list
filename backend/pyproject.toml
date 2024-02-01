@@ -22,7 +22,7 @@ typer = { extras = ["all"], version = "^0.9" }
 black = "^23"
 isort = "^5"
 Faker = "^21"
-flake8 = "^6"
+flake8 = "^7"
 autoflake = "^2"
 
 [tool.isort]
