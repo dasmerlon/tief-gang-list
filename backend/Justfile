@@ -19,7 +19,7 @@ setup:
     poetry install
 
 lint:
-    poetry run ruff check ./app --show-source
+    poetry run ruff check ./app --output-format=full
     poetry run ruff format ./app --diff
 
 format:
