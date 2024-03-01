@@ -19,7 +19,7 @@ psycopg2 = "^2.9.5"
 typer = { extras = ["all"], version = "^0.9" }
 
 [tool.poetry.dev-dependencies]
-black = "^23"
+black = "^24"
 isort = "^5"
 Faker = "^21"
 flake8 = "^6"
