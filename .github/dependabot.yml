@@ -7,6 +7,10 @@ updates:
       interval: "monthly"
     commit-message:
       prefix: "chore:"
+    groups:
+      actions:
+        patterns:
+          - "*"
   # Python
   - package-ecosystem: "pip"
     directory: "/backend"
@@ -14,8 +18,16 @@ updates:
       interval: "monthly"
     commit-message:
       prefix: "chore:"
+    groups:
+      python:
+        patterns:
+          - "*"
   # Javascript
   - package-ecosystem: "npm"
     directory: "/frontend"
     schedule:
       interval: "monthly"
+    groups:
+      typescript:
+        patterns:
+          - "*"
