@@ -19,12 +19,44 @@ psycopg2 = "^2.9.5"
 typer = { extras = ["all"], version = "^0.9" }
 
 [tool.poetry.dev-dependencies]
-black = "^23"
-isort = "^5"
-Faker = "^21"
-flake8 = "^6"
-autoflake = "^2"
+ruff = "^0.2"
 
-[tool.isort]
-line_length = 88
-profile = "black"
+# Check the Ruff documentation for more info on how to configure this
+# General docs: https://docs.astral.sh/ruff/configuration/
+# Explicit docs for individual settings: https://docs.astral.sh/ruff/settings/
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py311"
+exclude = [
+    ".venv",
+    "__init__.py",
+]
+
+[tool.ruff.lint]
+select = [
+    "E", # Pycodestyle
+    "F", # Pyflakes
+    "I", # Isort
+    "UP", # Language feature updates
+    "RUF", # Ruff Rules
+]
+fixable = [
+    "E",
+    "F",
+    "I",
+    "UP", # Language feature updates
+    "RUF", # Ruff Rules
+]
+
+# 4. Ignore `E402` (import violations) in all `__init__.py` and misc files.
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"

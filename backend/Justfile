@@ -19,23 +19,12 @@ setup:
     poetry install
 
 lint:
-    poetry run black app --check
-    poetry run isort \
-        --skip __init__.py \
-        --check-only app
-    poetry run flake8 \
-        --exclude __init__.py,.venv
+    poetry run ruff check ./app --output-format=full
+    poetry run ruff format ./app --diff
 
 format:
-    # remove unused imports
-    poetry run autoflake \
-        --remove-all-unused-imports \
-        --recursive \
-        --in-place app \
-        --exclude=__init__.py,.venv
-    poetry run black app
-    poetry run isort app \
-        --skip __init__.py
+    poetry run ruff check --fix ./app
+    poetry run ruff format ./app
 
 generate-api-spec:
     poetry run python ./main.py generate-api-spec
