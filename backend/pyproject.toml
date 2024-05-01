@@ -12,14 +12,14 @@ repository = "https://github.com/dasmerlon/tief-gang-list"
 [tool.poetry.dependencies]
 python = ">=3.11, <4"
 python-dateutil = "^2"
-fastapi = { extras = ["all"], version = "^0.108" }
+fastapi = { extras = ["all"], version = "^0.110" }
 sqlalchemy-utils = "^0.41"
 fastapi-sqlalchemy = "^0.2"
 psycopg2 = "^2.9.5"
-typer = { extras = ["all"], version = "^0.9" }
+typer = { extras = ["all"], version = "^0.12" }
 
 [tool.poetry.dev-dependencies]
-ruff = "^0.2"
+ruff = "^0.4"
 
 # Check the Ruff documentation for more info on how to configure this
 # General docs: https://docs.astral.sh/ruff/configuration/
