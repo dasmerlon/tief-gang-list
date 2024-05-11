@@ -1,3 +1,7 @@
+//
+// This module is responsible for initializing all API namespaces that're
+// created via OpenApi-generator.
+//
 import { EntryEventApi, EventApi, GuestApi, RegistrationApi } from "./api/apis";
 import { Configuration } from "./api/runtime";
 

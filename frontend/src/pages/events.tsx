@@ -13,8 +13,11 @@ import {
 } from "@mui/material";
 import { format_date } from "../i18n";
 import { Link } from "react-router-dom";
-import PageLayout from "../layout/page_layout";
+import AdminPageLayout from "../layout/page_layout";
 
+/**
+ * Display the list of all events.
+ */
 function Events() {
     const [events, setEvents] = useState<ApiEvent[] | undefined>(undefined);
 
@@ -24,7 +27,7 @@ function Events() {
     }, []);
 
     return (
-        <PageLayout title="Events">
+        <AdminPageLayout title="Events">
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }}>
                     <TableHead>
@@ -56,7 +59,7 @@ function Events() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </PageLayout>
+        </AdminPageLayout>
     );
 }
 
