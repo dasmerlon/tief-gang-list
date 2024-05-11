@@ -4,4 +4,4 @@ api_router = APIRouter(
     prefix="/api",
 )
 
-from . import event, guest, entry_event, registration
+from . import entry_event, event, guest, registration
