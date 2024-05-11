@@ -21,6 +21,7 @@ typer = { extras = ["all"], version = "^0.12" }
 
 [tool.poetry.dev-dependencies]
 ruff = "^0.4"
+faker = "25"
 
 # Check the Ruff documentation for more info on how to configure this
 # General docs: https://docs.astral.sh/ruff/configuration/
