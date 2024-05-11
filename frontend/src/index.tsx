@@ -5,9 +5,9 @@ import AppRouter from "./router";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <RouterProvider router={AppRouter} />
-    </React.StrictMode>,
-  );
+    ReactDOM.createRoot(rootElement).render(
+        <React.StrictMode>
+            <RouterProvider router={AppRouter} />
+        </React.StrictMode>,
+    );
 }
