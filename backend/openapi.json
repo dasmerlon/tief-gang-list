@@ -48,7 +48,6 @@
                 "type": "object"
             },
             "EntryEventType": {
-                "description": "An enumeration.",
                 "enum": [
                     "arrival",
                     "departure"
@@ -73,9 +72,16 @@
                         "type": "string"
                     },
                     "registration_deadline": {
-                        "format": "date-time",
-                        "title": "Registration Deadline",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "format": "date-time",
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Registration Deadline"
                     }
                 },
                 "required": [
@@ -98,9 +104,16 @@
                         "type": "string"
                     },
                     "registration_deadline": {
-                        "format": "date-time",
-                        "title": "Registration Deadline",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "format": "date-time",
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Registration Deadline"
                     }
                 },
                 "required": [
@@ -122,9 +135,16 @@
                         "type": "string"
                     },
                     "registration_deadline": {
-                        "format": "date-time",
-                        "title": "Registration Deadline",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "format": "date-time",
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Registration Deadline"
                     }
                 },
                 "required": [
@@ -137,9 +157,16 @@
             "Guest": {
                 "properties": {
                     "email": {
-                        "format": "email",
-                        "title": "Email",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "format": "email",
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Email"
                     },
                     "first_name": {
                         "title": "First Name",
@@ -171,9 +198,16 @@
             "GuestCreate": {
                 "properties": {
                     "email": {
-                        "format": "email",
-                        "title": "Email",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "format": "email",
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Email"
                     },
                     "first_name": {
                         "title": "First Name",
@@ -199,9 +233,16 @@
             "GuestUpdate": {
                 "properties": {
                     "email": {
-                        "format": "email",
-                        "title": "Email",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "format": "email",
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Email"
                     },
                     "first_name": {
                         "title": "First Name",
@@ -399,7 +440,7 @@
         "title": "tief-gang-list",
         "version": "0.0.1"
     },
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "paths": {
         "/api/entry-event": {
             "post": {
@@ -453,9 +494,16 @@
                         "name": "event_id",
                         "required": false,
                         "schema": {
-                            "format": "uuid",
-                            "title": "Event Id",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "format": "uuid",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Event Id"
                         }
                     },
                     {
@@ -463,7 +511,15 @@
                         "name": "event_type",
                         "required": false,
                         "schema": {
-                            "$ref": "#/components/schemas/EntryEventType"
+                            "anyOf": [
+                                {
+                                    "$ref": "#/components/schemas/EntryEventType"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Event Type"
                         }
                     },
                     {
@@ -471,9 +527,16 @@
                         "name": "start",
                         "required": false,
                         "schema": {
-                            "format": "date-time",
-                            "title": "Start",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Start"
                         }
                     },
                     {
@@ -481,9 +544,16 @@
                         "name": "end",
                         "required": false,
                         "schema": {
-                            "format": "date-time",
-                            "title": "End",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End"
                         }
                     }
                 ],
@@ -571,9 +641,16 @@
                         "name": "start",
                         "required": false,
                         "schema": {
-                            "format": "date",
-                            "title": "Start",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Start"
                         }
                     },
                     {
@@ -581,9 +658,16 @@
                         "name": "end",
                         "required": false,
                         "schema": {
-                            "format": "date",
-                            "title": "End",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End"
                         }
                     }
                 ],
@@ -802,8 +886,15 @@
                         "name": "first_name_start",
                         "required": false,
                         "schema": {
-                            "title": "First Name Start",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "First Name Start"
                         }
                     },
                     {
@@ -811,8 +902,15 @@
                         "name": "last_name_start",
                         "required": false,
                         "schema": {
-                            "title": "Last Name Start",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Last Name Start"
                         }
                     },
                     {
@@ -820,8 +918,15 @@
                         "name": "subscribed",
                         "required": false,
                         "schema": {
-                            "title": "Subscribed",
-                            "type": "boolean"
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Subscribed"
                         }
                     }
                 ],
@@ -1083,8 +1188,15 @@
                         "name": "arrived",
                         "required": false,
                         "schema": {
-                            "title": "Arrived",
-                            "type": "boolean"
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Arrived"
                         }
                     },
                     {
@@ -1092,8 +1204,15 @@
                         "name": "buddy",
                         "required": false,
                         "schema": {
-                            "title": "Buddy",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Buddy"
                         }
                     },
                     {
@@ -1101,9 +1220,16 @@
                         "name": "guest_id",
                         "required": false,
                         "schema": {
-                            "format": "uuid",
-                            "title": "Guest Id",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "format": "uuid",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Guest Id"
                         }
                     },
                     {
@@ -1111,9 +1237,16 @@
                         "name": "event_id",
                         "required": false,
                         "schema": {
-                            "format": "uuid",
-                            "title": "Event Id",
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "format": "uuid",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Event Id"
                         }
                     }
                 ],
