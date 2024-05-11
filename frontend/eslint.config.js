@@ -1,10 +1,9 @@
 import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import tsParser from '@typescript-eslint/parser';
+import {configs as tsConfigs, parser as tsParser} from 'typescript-eslint';
 
 export default [
     eslint.configs.recommended,
-    ...tseslint.configs.recommended,
+    ...tsConfigs.recommended,
     {
         ignores: [
             "**/*.log",
