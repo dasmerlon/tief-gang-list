@@ -26,4 +26,4 @@ class Guest(GuestBase):
     id: UUID4
 
     class Config:
-        orm_mode = True
+        from_attribute = True
