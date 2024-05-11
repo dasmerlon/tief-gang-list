@@ -10,7 +10,7 @@ setup:
     npm install
 
 lint *args:
-    npx eslint --ignore-path .gitignore {{ args }} .
+    npx eslint {{ args }} .
     npx tsc
 
 generate-api-client *args:
