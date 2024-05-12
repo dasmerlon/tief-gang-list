@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { format_date } from "../i18n";
 import { Link } from "react-router-dom";
-import AdminPageLayout from "../layout/page_layout";
+import AdminPageLayout from "../layout/admin_page_layout";
 
 /**
  * Display the list of all events.
