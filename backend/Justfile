@@ -1,33 +1,32 @@
 run:
-    poetry run python ./main.py run
+    uv run ./main.py run
 
 run-reset: seed run
 
 createdb:
-    poetry run python ./main.py createdb
+    uv run ./main.py createdb
 
 dropdb:
-    poetry run python ./main.py dropdb
+    uv run ./main.py dropdb
 
 seed: resetdb
-    poetry run python ./main.py seed
+    uv run ./main.py seed
 
 resetdb: dropdb createdb
 
 setup:
-    poetry lock --no-update
-    poetry install
+    uv sync
 
 lint:
-    poetry run ruff check ./app --output-format=full
-    poetry run ruff format ./app --diff
+    uv run ruff check ./app --output-format=full
+    uv run ruff format ./app --diff
 
 format:
-    poetry run ruff check --fix ./app
-    poetry run ruff format ./app
+    uv run ruff check --fix ./app
+    uv run ruff format ./app
 
 generate-api-spec:
-    poetry run python ./main.py generate-api-spec
+    uv run ./main.py generate-api-spec
 
 
 # Watch for something

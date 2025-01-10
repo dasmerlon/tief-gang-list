@@ -1,27 +1,29 @@
-[tool.poetry]
+[project]
 name = "tief-gang-list"
 version = "0.0.1"
 description = "A guest management tool for the Tiefgang hackspace."
 authors = [
-  "Arne Beer <contact@arne.beer>",
-  "Merle Hoffmann <hoffmannmerle@web.de>",
+  { name = "Arne Beer", email = "contact@arne.beer" },
+  { name = "Merle Hoffmann", email = "hoffmannmerle@web.de" },
 ]
 license = "MIT"
-repository = "https://github.com/dasmerlon/tief-gang-list"
-package-mode = false
+requires-python = ">=3.13"
+dependencies = [
+  "python-dateutil>=2",
+  "fastapi[all]>=0.110",
+  "sqlalchemy-utils>=0.41",
+  "fastapi-sqlalchemy>=0.2",
+  "psycopg2>=2.9.5",
+  "typer[all]>=0.12",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.11, <4"
-python-dateutil = "^2"
-fastapi = { extras = ["all"], version = "^0.110" }
-sqlalchemy-utils = "^0.41"
-fastapi-sqlalchemy = "^0.2"
-psycopg2 = "^2.9.5"
-typer = { extras = ["all"], version = "^0.12" }
 
-[tool.poetry.dev-dependencies]
-ruff = "^0.4"
-faker = "25"
+[project.urls]
+Repository = "https://github.com/dasmerlon/tief-gang-list"
+
+
+[tool.uv]
+dev-dependencies = ["ruff>=0.8", "faker>=25"]
 
 # Check the Ruff documentation for more info on how to configure this
 # General docs: https://docs.astral.sh/ruff/configuration/
@@ -30,25 +32,22 @@ faker = "25"
 line-length = 88
 indent-width = 4
 target-version = "py311"
-exclude = [
-    ".venv",
-    "__init__.py",
-]
+exclude = [".venv", "__init__.py"]
 
 [tool.ruff.lint]
 select = [
-    "E", # Pycodestyle
-    "F", # Pyflakes
-    "I", # Isort
-    "UP", # Language feature updates
-    "RUF", # Ruff Rules
+  "E",   # Pycodestyle
+  "F",   # Pyflakes
+  "I",   # Isort
+  "UP",  # Language feature updates
+  "RUF", # Ruff Rules
 ]
 fixable = [
-    "E",
-    "F",
-    "I",
-    "UP", # Language feature updates
-    "RUF", # Ruff Rules
+  "E",
+  "F",
+  "I",
+  "UP",  # Language feature updates
+  "RUF", # Ruff Rules
 ]
 
 # 4. Ignore `E402` (import violations) in all `__init__.py` and misc files.
