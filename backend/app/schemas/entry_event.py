@@ -6,7 +6,7 @@ from pydantic import UUID4, BaseModel
 from app import schemas
 
 
-class EntryEventType(str, Enum):
+class EntryEventType(Enum):
     arrival = "arrival"
     departure = "departure"
 
