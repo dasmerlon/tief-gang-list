@@ -15,7 +15,7 @@ seed: resetdb
 resetdb: dropdb createdb
 
 setup:
-    uv sync
+    uv sync --managed-python
 
 lint:
     uv run ruff check ./app --output-format=full

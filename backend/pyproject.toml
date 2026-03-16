@@ -7,14 +7,14 @@ authors = [
   { name = "Merle Hoffmann", email = "hoffmannmerle@web.de" },
 ]
 license = "MIT"
-requires-python = ">=3.13"
+requires-python = "~=3.13.12"
 dependencies = [
   "python-dateutil>=2",
   "fastapi[all]>=0.110",
   "sqlalchemy-utils>=0.41",
   "fastapi-sqlalchemy>=0.2",
   "psycopg2>=2.9.5",
-  "typer[all]>=0.12",
+  "typer>=0.12",
 ]
 
 
@@ -22,8 +22,8 @@ dependencies = [
 Repository = "https://github.com/dasmerlon/tief-gang-list"
 
 
-[tool.uv]
-dev-dependencies = ["ruff>=0.8", "faker>=25"]
+[dependency-groups]
+dev = ["ruff>=0.8", "faker>=25"]
 
 # Check the Ruff documentation for more info on how to configure this
 # General docs: https://docs.astral.sh/ruff/configuration/
@@ -31,7 +31,6 @@ dev-dependencies = ["ruff>=0.8", "faker>=25"]
 [tool.ruff]
 line-length = 88
 indent-width = 4
-target-version = "py311"
 exclude = [".venv", "__init__.py"]
 
 [tool.ruff.lint]

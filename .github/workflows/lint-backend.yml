@@ -42,17 +42,12 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1
 
-      - name: Cache python virtual env
-        uses: actions/cache@v4
-        id: cache
-        with:
-          path: /backend/.venv
-          key: ${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
 
-      - name: Install Python dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Setup environment
         run: |
-          poetry install
+          just setup
 
       - name: Lint
         run: |
